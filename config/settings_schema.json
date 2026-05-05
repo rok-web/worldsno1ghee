@@ -42,14 +42,12 @@
       {
         "type": "font_picker",
         "id": "font_heading",
-        "label": "Heading Font",
-        "default": "cormorant_garamond_n7"
+        "label": "Heading Font"
       },
       {
         "type": "font_picker",
         "id": "font_body",
-        "label": "Body Font",
-        "default": "dm_sans_n4"
+        "label": "Body Font"
       }
     ]
   }

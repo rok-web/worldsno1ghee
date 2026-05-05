@@ -33,7 +33,7 @@
       "type": "faq",
       "settings": {}
     }
-  ,
+  },
   "order": [
     "hero",
     "featured_products",
@@ -41,5 +41,5 @@
     "bilona_journey",
     "second_products",
     "faq"
-  ]}
+  ]
 }

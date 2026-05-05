@@ -1,0 +1,32 @@
+<div class="tabs">
+  <div class="tabs__nav">
+    <button class="tabs__nav-btn active" data-tab="desc">Description</button>
+    <button class="tabs__nav-btn" data-tab="info">Info</button>
+    <button class="tabs__nav-btn" data-tab="shipping">Shipping</button>
+    <button class="tabs__nav-btn" data-tab="lab">Lab Report</button>
+  </div>
+  <div class="tabs__content" id="tab-desc">{{ product.description }}</div>
+  <div class="tabs__content" id="tab-info" style="display:none;">Ingredients: 100% Kapila A2 Cow Milk<br>Bilona Method, Forest Grazed, No Additives</div>
+  <div class="tabs__content" id="tab-shipping" style="display:none;">Free Shipping & COD across India. Open Box Delivery available in select cities.</div>
+  <div class="tabs__content" id="tab-lab" style="display:none;">See our <a href="/pages/our-lab-reports">Lab Reports</a> for purity certificates.</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var navBtns = document.querySelectorAll('.tabs__nav-btn');
+    var contents = document.querySelectorAll('.tabs__content');
+    navBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        navBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        contents.forEach(c => c.style.display = 'none');
+        document.getElementById('tab-' + btn.dataset.tab).style.display = '';
+      });
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Product Details Tabs",
+  "settings": []
+}
+{% endschema %}

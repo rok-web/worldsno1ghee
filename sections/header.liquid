@@ -1,0 +1,47 @@
+<header>
+  <div class="container header-inner">
+    <div class="mobile-menu-toggle">
+      {% render 'icons', icon: 'menu' %}
+    </div>
+
+    <a href="/" class="logo">
+      {% if section.settings.logo != blank %}
+        {{ section.settings.logo | image_url: height: 60 | image_tag }}
+      {% else %}
+        <h2 style="margin:0;">{{ shop.name }}</h2>
+      {% endif %}
+    </a>
+
+    <nav class="nav-links">
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="header-actions">
+      <a href="/cart" class="cart-toggle">
+        {% render 'icons', icon: 'cart' %}
+        <span class="cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

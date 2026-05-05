@@ -1,0 +1,24 @@
+name: Deploy Theme to Shopify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-to: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Shopify CLI Theme Push
+        uses: shopify/shopify-cli-action@v1
+        with:
+          command: theme push
+          store: ${{ secrets.SHOPIFY_STORE_URL }}
+          path: .
+          theme: ${{ secrets.SHOPIFY_THEME_ID }}
+        env:
+          SHOPIFY_CLI_TTY: 0
+          SHOPIFY_FLAG_PASSWORD: ${{ secrets.SHOPIFY_PASSWORD }}

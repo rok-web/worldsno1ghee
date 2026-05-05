@@ -1,0 +1,48 @@
+<section class="section-padding">
+  <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
+    <div class="product-images">
+      <img src="{{ product.featured_media | image_url: width: 800 }}" alt="{{ product.title }}" style="width: 100%; border-radius: 8px;">
+    </div>
+    
+    <div class="product-info">
+      <h1 style="font-size: 42px; margin-bottom: 10px;">{{ product.title }}</h1>
+      
+      <div class="product-price" style="font-size: 28px; margin-bottom: 20px;">
+        {% if product.compare_at_price > product.price %}
+          <span style="text-decoration: line-through; color: #999; margin-right: 15px;">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+        <span style="color: var(--color-gold); font-weight: 700;">{{ product.price | money }}</span>
+      </div>
+
+      <div class="product-description" style="margin-bottom: 30px;">
+        {{ product.description }}
+      </div>
+
+      <form method="post" action="/cart/add" class="product-form">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 10px; font-weight: 700;">Quantity</label>
+          <input type="number" name="quantity" value="1" min="1" style="padding: 10px; width: 80px; border: 1px solid #ddd;">
+        </div>
+
+        <button type="submit" class="btn" style="width: 100%; margin-bottom: 15px;">Add to Cart</button>
+        <button type="button" class="btn btn-outline" style="width: 100%;">Buy It Now</button>
+      </form>
+
+      <div class="trust-badges" style="margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+        <div style="background: #f9f9f9; padding: 10px; text-align: center; border-radius: 4px; font-size: 13px;">✅ Cash on Delivery</div>
+        <div style="background: #f9f9f9; padding: 10px; text-align: center; border-radius: 4px; font-size: 13px;">🚚 Free Shipping</div>
+        <div style="background: #f9f9f9; padding: 10px; text-align: center; border-radius: 4px; font-size: 13px;">📦 Open Box Delivery</div>
+        <div style="background: #f9f9f9; padding: 10px; text-align: center; border-radius: 4px; font-size: 13px;">🧪 Lab Tested</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Hero",
+  "settings": []
+}
+{% endschema %}

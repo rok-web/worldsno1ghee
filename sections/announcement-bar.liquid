@@ -1,0 +1,21 @@
+<div class="announcement-bar">
+  <div class="container marquee-container">
+    <div class="marquee-content">
+      {{ section.settings.text }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "FREE SHIPPING ON ORDERS OVER ₹1999 | COD AVAILABLE"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+<section class="section-padding">
+  <div class="container">
+    <div class="section-title">
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    <div class="product-grid">
+      {% for product in section.settings.collection.products limit: section.settings.limit %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Our Best Sellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4,
+      "label": "Product Limit"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}

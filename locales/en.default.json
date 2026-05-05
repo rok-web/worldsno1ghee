@@ -1,0 +1,19 @@
+{
+  "accessibility": {
+    "refresh_page": "Page refreshed",
+    "link_messages": {
+      "new_window": "Opens in a new window"
+    }
+  },
+  "cart": {
+    "add_to_cart": "Add to Cart",
+    "view_cart": "View Cart",
+    "checkout": "Checkout"
+  },
+  "products": {
+    "product": {
+      "price": "Price",
+      "quantity": "Quantity"
+    }
+  }
+}

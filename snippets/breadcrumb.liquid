@@ -1,0 +1,11 @@
+<nav class="breadcrumb">
+  <a href="/">Home</a>
+  {% if collection %}
+    <span>/</span>
+    <a href="{{ collection.url }}">{{ collection.title }}</a>
+  {% endif %}
+  {% if product %}
+    <span>/</span>
+    <span>{{ product.title }}</span>
+  {% endif %}
+</nav>

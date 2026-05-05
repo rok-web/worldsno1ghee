@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Taste of Farming",
+        "cta_text": "Buy A2 Ghee"
+      }
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Pure. Potent. Precious.",
+        "limit": 4
+      }
+    },
+    "golden_elixir": {
+      "type": "golden-elixir-banner",
+      "settings": {}
+    },
+    "bilona_journey": {
+      "type": "bilona-journey",
+      "settings": {}
+    },
+    "second_products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Farm to Table Favorites",
+        "limit": 4
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {}
+    }
+  ,
+  "order": [
+    "hero",
+    "featured_products",
+    "golden_elixir",
+    "bilona_journey",
+    "second_products",
+    "faq"
+  ]}
+}

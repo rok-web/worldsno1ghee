@@ -1,0 +1,15 @@
+<section class="section-padding" style="background: var(--color-earth-brown); color: white; text-align: center;">
+  <div class="container">
+    <h1 style="color: white; font-size: 56px;">{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div style="margin-top: 20px; font-size: 18px;">{{ collection.description }}</div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "settings": []
+}
+{% endschema %}

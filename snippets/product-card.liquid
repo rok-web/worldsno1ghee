@@ -1,0 +1,24 @@
+<div class="product-card">
+  {% if product.compare_at_price > product.price %}
+    <span class="badge">SALE</span>
+  {% endif %}
+  
+  <a href="{{ product.url }}">
+    <div class="product-card-image">
+      {{ product.featured_media | image_url: width: 400 | image_tag: loading: 'lazy' }}
+    </div>
+    <h3>{{ product.title }}</h3>
+  </a>
+
+  <div class="product-price">
+    {% if product.compare_at_price > product.price %}
+      <span class="compare-at">{{ product.compare_at_price | money }}</span>
+    {% endif %}
+    <span>{{ product.price | money }}</span>
+  </div>
+
+  <form method="post" action="/cart/add" class="product-form">
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+    <button type="submit" class="btn btn-outline" style="width: 100%; margin-top: 15px;">Add to Cart</button>
+  </form>
+</div>

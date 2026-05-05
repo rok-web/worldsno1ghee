@@ -1,0 +1,24 @@
+{
+  "current": {
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "text": "FREE SHIPPING ON ORDERS OVER ₹1999 | COD AVAILABLE"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu"
+        }
+      }
+    },
+    "settings": {
+      "color_gold": "#C8961E",
+      "color_cream": "#FDFAF4",
+      "color_earth_brown": "#5C3D1E",
+      "color_dark": "#1A1208"
+    }
+  }
+}

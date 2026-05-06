@@ -304,7 +304,7 @@ button, .btn {
 .sanctuary {
   background-color: var(--color-earth-dark);
   color: var(--color-white);
-  padding: 80px 0;
+  padding: 20px 0;
   text-align: center;
 }
 
@@ -937,7 +937,7 @@ button, .btn {
   .contact-container { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .about-hero-section { padding: 60px 0; }
-  .sanctuary { padding: 40px 0; }
+  .sanctuary { padding: 10px 0; }
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;

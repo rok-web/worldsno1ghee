@@ -14,7 +14,11 @@
 
       <div class="sanctuary-image" data-aos="fade-left">
         <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
-          <img src="{{ 'about-sanctuary-bg.png' | asset_url }}" alt="Sacred Bond with Kapila Cow" style="width: 100%; display: block;">
+          {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt | default: 'Sacred Bond with Kapila Cow' }}" style="width: 100%; display: block;">
+          {% else %}
+            <img src="{{ 'about-sanctuary-bg.png' | asset_url }}" alt="Sacred Bond with Kapila Cow" style="width: 100%; display: block;">
+          {% endif %}
           <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
         </div>
       </div>
@@ -26,7 +30,13 @@
 {% schema %}
 {
   "name": "About Sanctuary",
-  "settings": [],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Featured Image"
+    }
+  ],
   "presets": [
     {
       "name": "About Sanctuary"

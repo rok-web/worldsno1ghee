@@ -1,58 +1,27 @@
 <section class="bilona-journey" style="padding: 100px 0; background-color: var(--color-cream-bg);">
   <div class="container">
     <div class="section-header" data-aos="fade-up">
-      <h2 class="h2">The Ancient Vedic Journey</h2>
-      <p class="p-large">A 3,000-year-old process, preserved for your health.</p>
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      <p class="p-large">{{ section.settings.subtitle }}</p>
     </div>
 
     <div class="journey-steps">
-      <!-- Step 1 -->
-      <div class="journey-step" data-aos="fade-up">
-        <div class="step-image">
-          <span class="step-number">1</span>
-          <img src="{{ 'vedic-step-1.png' | asset_url }}" alt="The Sacred Kapila Source" loading="lazy">
+      {% for block in section.blocks %}
+        <div class="journey-step" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+          <div class="step-image">
+            <span class="step-number">{{ forloop.index }}</span>
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+          <div class="step-content">
+            <h3 class="h3 step-title">{{ block.settings.title }}</h3>
+            <div class="p-large">{{ block.settings.text }}</div>
+          </div>
         </div>
-        <div class="step-content">
-          <h3 class="h3 step-title">The Sacred Kapila Source</h3>
-          <p class="p-large">Everything begins with the Kapila Red Cow. Exclusively forest-grazed on medicinal herbs like Ashwagandha and Amruthaballi, their A2 milk is a biological treasure. We don't use 'mixed milk' or industrial breeds.</p>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="journey-step" data-aos="fade-up">
-        <div class="step-image">
-          <span class="step-number">2</span>
-          <img src="{{ 'vedic-step-2.png' | asset_url }}" alt="Slow Wood-Fire Boiling" loading="lazy">
-        </div>
-        <div class="step-content">
-          <h3 class="h3 step-title">Slow Wood-Fire Boiling</h3>
-          <p class="p-large">Raw A2 milk is boiled slowly over traditional wood fires. This controlled heating preserves the delicate enzymes and nutrients that modern electrical pasteurization destroys. The aroma of wood-smoke is part of the alchemy.</p>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="journey-step" data-aos="fade-up">
-        <div class="step-image">
-          <span class="step-number">3</span>
-          <img src="{{ 'vedic-step-3.png' | asset_url }}" alt="The Bilona Churning / Manthan" loading="lazy">
-        </div>
-        <div class="step-content">
-          <h3 class="h3 step-title">The Bilona Churning (Manthan)</h3>
-          <p class="p-large">The milk is cultured into curd in earthen pots. At Brahma Muhurta (dawn), we hand-churn the curd with a wooden Bilona. This bi-directional churning (Manthan) separates the Makkhan (butter) from the curd, not cream.</p>
-        </div>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="journey-step" data-aos="fade-up">
-        <div class="step-image">
-          <span class="step-number">4</span>
-          <img src="{{ 'vedic-step-4.png' | asset_url }}" alt="The Golden Elixir Arrives" loading="lazy">
-        </div>
-        <div class="step-content">
-          <h3 class="h3 step-title">The Golden Elixir Arrives</h3>
-          <p class="p-large">The Makkhan is clarified over slow heat to produce the final Ghee. Granular, aromatic, and medicinal. We produce in small batches only, ensuring that every jar you receive was made with human care, not machine efficiency.</p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -60,7 +29,43 @@
 {% schema %}
 {
   "name": "Bilona Journey",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The Ancient Vedic Journey"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "A 3,000-year-old process, preserved for your health."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Step Description"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "Bilona Journey"

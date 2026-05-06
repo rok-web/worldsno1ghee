@@ -5,11 +5,13 @@
     </div>
 
     <div class="gallery-masonry">
-      {% assign images = "WhatsApp-Image-2026-02-19-at-13.59.33.jpeg,WhatsApp-Image-2026-02-19-at-13.59.33-1.jpeg,WhatsApp-Image-2026-02-19-at-13.59.34-1.jpeg,WhatsApp-Image-2026-02-19-at-13.59.34-2.jpeg,WhatsApp-Image-2026-02-19-at-13.59.35.jpeg,WhatsApp-Image-2026-02-19-at-13.59.35-1.jpeg,WhatsApp-Image-2026-02-19-at-13.59.35-2.jpeg,WhatsApp-Image-2026-02-19-at-13.59.36-1.jpeg" | split: "," %}
-      
-      {% for img in images %}
+      {% for block in section.blocks %}
         <div class="gallery-item" data-aos="fade-up">
-          <img src="https://worldsno1bestghee.com/wp-content/uploads/2026/03/{{ img }}" alt="Farm Life" loading="lazy">
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.image.alt | default: 'Farm Life' }}" loading="lazy">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
         </div>
       {% endfor %}
     </div>
@@ -19,6 +21,26 @@
 {% schema %}
 {
   "name": "About Gallery",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Life at the Sanctuary"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Select Image"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

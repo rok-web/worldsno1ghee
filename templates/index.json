@@ -159,6 +159,19 @@
       "type": "pure-potent-grid",
       "settings": {}
     },
+    "gallery": {
+      "type": "media-gallery",
+      "settings": {
+        "title": "Sacred Sanctuary Gallery",
+        "columns_desktop": 3
+      },
+      "blocks": {
+        "img_1": { "type": "image" },
+        "img_2": { "type": "image" },
+        "img_3": { "type": "image" }
+      },
+      "block_order": ["img_1", "img_2", "img_3"]
+    },
     "fssai-trust": {
       "type": "fssai-trust",
       "settings": {}
@@ -201,6 +214,7 @@
     "bilona-journey",
     "product-showcase",
     "pure-potent",
+    "gallery",
     "fssai-trust",
     "testimonials",
     "faq"

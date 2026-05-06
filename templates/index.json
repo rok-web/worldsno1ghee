@@ -76,7 +76,45 @@
     },
     "bilona-journey": {
       "type": "bilona-journey",
-      "settings": {}
+      "settings": {
+        "title": "The Ancient Vedic Journey",
+        "subtitle": "A 3,000-year-old process, preserved for your health."
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "The Sacred Kapila Source",
+            "text": "<p>Everything begins with the Kapila Red Cow. Exclusively forest-grazed on medicinal herbs like Ashwagandha and Amruthaballi, their A2 milk is a biological treasure. We don't use 'mixed milk' or industrial breeds.</p>",
+            "asset_image": "vedic-step-1.png"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Slow Wood-Fire Boiling",
+            "text": "<p>Raw A2 milk is boiled slowly over traditional wood fires. This controlled heating preserves the delicate enzymes and nutrients that modern electrical pasteurization destroys. The aroma of wood-smoke is part of the alchemy.</p>",
+            "asset_image": "vedic-step-2.png"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "The Bilona Churning (Manthan)",
+            "text": "<p>The milk is cultured into curd in earthen pots. At Brahma Muhurta (dawn), we hand-churn the curd with a wooden Bilona. This bi-directional churning (Manthan) separates the Makkhan (butter) from the curd, not cream.</p>",
+            "asset_image": "vedic-step-3.png"
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "The Golden Elixir Arrives",
+            "text": "<p>The Makkhan is clarified over slow heat to produce the final Ghee. Granular, aromatic, and medicinal. We produce in small batches only, ensuring that every jar you receive was made with human care, not machine efficiency.</p>",
+            "asset_image": "vedic-step-4.png"
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"]
     },
     "product-showcase": {
       "type": "product-showcase",

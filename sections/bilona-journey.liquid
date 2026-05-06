@@ -12,6 +12,8 @@
             <span class="step-number">{{ forloop.index }}</span>
             {% if block.settings.image != blank %}
               <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% elsif block.settings.asset_image != blank %}
+              <img src="{{ block.settings.asset_image | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
             {% else %}
               {{ 'image' | placeholder_svg_tag }}
             {% endif %}
@@ -51,7 +53,13 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Step Image"
+          "label": "1. Upload from Shopify (Recommended)"
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "2. Fallback Asset Name (Advanced)",
+          "info": "Only use this if you want to use a file from the theme assets folder."
         },
         {
           "type": "text",

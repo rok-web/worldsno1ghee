@@ -137,6 +137,11 @@ button, .btn {
   padding: 12px 0;
   overflow: hidden;
   white-space: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100;
 }
 
 .marquee-content {
@@ -158,20 +163,24 @@ button, .btn {
   100% { transform: translateX(-50%); }
 }
 
+/* Offset body to prevent content hiding under fixed bars */
+body {
+  padding-top: 40px; /* height of announcement bar */
+}
+
 /* --- HEADER --- */
 .site-header {
-  position: absolute;
-  top: 48px; /* Below announcement bar */
+  position: fixed;
+  top: 40px; /* Below fixed announcement bar */
   left: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 1000;
   transition: var(--transition-smooth);
   padding: 20px 0;
 }
 
 .site-header.is-sticky {
-  position: fixed;
-  top: 0;
+  top: 40px; /* Keep below announcement bar always */
   background-color: var(--color-white);
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   padding: 12px 0;
@@ -1169,3 +1178,156 @@ button, .btn {
 }
 
 /* --- END OF THEME.CSS --- */
+
+/* ============================================
+   LIVE TRACKING POPUP
+   ============================================ */
+#live-tracker-popup {
+  position: fixed;
+  bottom: 100px;
+  left: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.live-tracker-card {
+  background: rgba(26, 18, 8, 0.94);
+  border: 1px solid rgba(200, 150, 30, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: all;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(200,150,30,0.1);
+  animation: tracker-slide-in 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  max-width: 290px;
+  cursor: default;
+}
+
+@keyframes tracker-slide-in {
+  from { transform: translateX(-120%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.tracker-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  animation: dot-ping 1.5s ease-out infinite;
+}
+
+@keyframes dot-ping {
+  0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+  70%  { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+.tracker-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.tracker-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.tracker-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--color-gold-light);
+  letter-spacing: 0.5px;
+}
+
+.tracker-subtitle {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Main viewer count pill */
+#live-tracker-main {
+  background: linear-gradient(135deg, rgba(26,18,8,0.96), rgba(92,61,30,0.85));
+  border: 1px solid rgba(200, 150, 30, 0.5);
+  border-radius: 50px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: all;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+}
+
+#live-tracker-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200,150,30,0.2);
+}
+
+#live-tracker-main .tracker-dot {
+  width: 8px;
+  height: 8px;
+}
+
+#live-viewer-count {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-gold-light);
+}
+
+#live-tracker-main .tracker-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+  font-family: var(--font-body);
+  letter-spacing: 0.5px;
+}
+
+/* Notification cards container */
+#live-notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Dismiss button */
+.tracker-dismiss {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.3);
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 0 0 4px;
+  transition: color 0.2s;
+}
+
+.tracker-dismiss:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+@media (max-width: 480px) {
+  #live-tracker-popup {
+    bottom: 80px;
+    left: 12px;
+  }
+  .live-tracker-card {
+    max-width: 240px;
+    padding: 10px 14px;
+  }
+}
+

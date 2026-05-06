@@ -1,4 +1,4 @@
-<section class="announcement-bar">
+<section class="announcement-bar" id="announcement-bar">
   <div class="marquee-wrapper">
     <div class="marquee-content">
       {% for i in (1..4) %}
@@ -18,8 +18,11 @@
     color: var(--color-gold-light);
     padding: 10px 0;
     overflow: hidden;
-    position: relative;
-    z-index: 101;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
   }
   
   .marquee-wrapper {

@@ -88,97 +88,169 @@
 
     <!-- ===== LIVE TRACKER POPUP ===== -->
     <div id="live-tracker-popup">
-      <!-- Main viewer count pill -->
-      <div id="live-tracker-main" title="People viewing this site right now">
+      <div id="live-tracker-main" title="People currently browsing">
         <span class="tracker-dot"></span>
         <span id="live-viewer-count">—</span>
-        <span class="tracker-label">live viewers</span>
+        <span class="tracker-label">people browsing now</span>
       </div>
-      <!-- Social-proof notification cards appear here -->
       <div id="live-notifications"></div>
     </div>
 
     <script>
-    (function() {
-      /* ── CONFIG ─────────────────────────────────── */
-      var BASE_VIEWERS  = 24;   // starting point
-      var VARIANCE      = 8;    // ± random swing
-      var TICK_MS       = 5000; // how often count updates
-      var NOTIF_INTERVAL= 12000;// how often a card appears
-      var NOTIF_DURATION= 6000; // how long each card stays
+    (function () {
 
-      /* ── SOCIAL PROOF DATA ──────────────────────── */
-      var events = [
-        { icon: '🛒', title: 'Someone in Delhi just added to cart', sub: 'Bilona A2 Ghee – 500ml' },
-        { icon: '✅', title: 'Order placed from Mumbai', sub: '2 × Pure A2 Ghee – 250ml' },
-        { icon: '👀', title: '3 people are viewing this product', sub: 'Forest-Grazed A2 Cow Ghee' },
-        { icon: '⭐', title: 'New 5-star review received', sub: '"Best ghee I\'ve ever tasted!"' },
-        { icon: '🛒', title: 'Someone in Bangalore added to cart', sub: 'A2 Ghee – 1 kg Value Pack' },
-        { icon: '✅', title: 'Order shipped to Hyderabad', sub: 'Bilona Ghee Subscription' },
-        { icon: '🔥', title: 'Low stock alert!', sub: 'Only 7 units of 500ml left' },
-        { icon: '👀', title: 'Customer from Pune is browsing', sub: 'Vedic Bilona Process Ghee' },
-        { icon: '✅', title: 'Order confirmed from Chennai', sub: '3 × A2 Ghee Gift Set' },
-        { icon: '⭐', title: 'Verified buyer rated 5 stars', sub: '"Authentic bilona taste – love it!"' },
+      /* ─── CONFIG ──────────────────────────────── */
+      var BASE   = 22;
+      var SWING  = 10;
+      var TICK   = 6000;        // viewer count refresh (ms)
+      var MIN_INTERVAL = 9000;  // min delay between cards
+      var MAX_INTERVAL = 18000; // max delay between cards
+      var CARD_LIFE    = 7000;  // card auto-dismiss (ms)
+
+      /* ─── DATA ────────────────────────────────── */
+      var names   = ['Priya S.','Amit K.','Rekha M.','Suresh P.','Ananya R.',
+                     'Vikram T.','Deepa N.','Rohit J.','Kavita L.','Sanjay B.'];
+      var cities  = ['Delhi','Mumbai','Bangalore','Hyderabad','Pune',
+                     'Chennai','Kolkata','Ahmedabad','Jaipur','Lucknow'];
+      var products = [
+        'Bilona A2 Ghee – 500 ml',
+        'Forest-Grazed A2 Ghee – 250 ml',
+        'A2 Cow Ghee – 1 kg Pack',
+        'Vedic Bilona Ghee – 500 ml',
+        'A2 Ghee Gift Set',
+        'Premium Bilona Ghee – 250 ml',
+      ];
+      var reviews = [
+        '"Pure, aromatic and absolutely authentic."',
+        '"Finally found real bilona ghee. Worth every rupee."',
+        '"Best quality A2 ghee I have ever used."',
+        '"My family has been using this for 3 months now."',
+        '"The fragrance itself tells you it is genuine."',
       ];
 
-      /* ── VIEWER COUNT ───────────────────────────── */
+      /* Event types: purchase | cart | stock | review | viewing */
+      function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+      function buildEvent() {
+        var r = Math.random();
+        if      (r < 0.28) return { type: 'purchase', name: randomFrom(names), city: randomFrom(cities), product: randomFrom(products) };
+        else if (r < 0.52) return { type: 'cart',     name: randomFrom(names), city: randomFrom(cities), product: randomFrom(products) };
+        else if (r < 0.67) return { type: 'review',   name: randomFrom(names), city: randomFrom(cities), review: randomFrom(reviews) };
+        else if (r < 0.80) return { type: 'stock',    product: randomFrom(products), qty: Math.floor(Math.random() * 6) + 3 };
+        else               return { type: 'viewing',  count: Math.floor(Math.random() * 8) + 2, product: randomFrom(products) };
+      }
+
+      /* ─── SVG ICONS (no emoji) ────────────────── */
+      var SVG = {
+        purchase: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+        cart:     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>',
+        review:   '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>',
+        stock:    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+        viewing:  '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+      };
+
+      /* Accent colour per type */
+      var ACCENT = {
+        purchase: '#C8961E',
+        cart:     '#4a9eff',
+        review:   '#f59e0b',
+        stock:    '#ef4444',
+        viewing:  '#8b9eff',
+      };
+
+      /* Label per type */
+      function buildTitle(ev) {
+        if (ev.type === 'purchase') return ev.name + ' from ' + ev.city + ' just purchased';
+        if (ev.type === 'cart')     return ev.name + ' from ' + ev.city + ' added to cart';
+        if (ev.type === 'review')   return ev.name + ' from ' + ev.city + ' left a review';
+        if (ev.type === 'stock')    return 'Only ' + ev.qty + ' units left in stock';
+        if (ev.type === 'viewing')  return ev.count + ' people are viewing this right now';
+      }
+      function buildSub(ev) {
+        if (ev.type === 'purchase') return ev.product;
+        if (ev.type === 'cart')     return ev.product;
+        if (ev.type === 'review')   return ev.review;
+        if (ev.type === 'stock')    return ev.product;
+        if (ev.type === 'viewing')  return ev.product;
+      }
+
+      /* Initials avatar */
+      function initials(name) {
+        if (!name) return '••';
+        return name.split(' ').map(function(p){ return p[0]; }).join('').slice(0,2).toUpperCase();
+      }
+
+      /* "X min ago" label */
+      function timeAgo() {
+        var m = Math.floor(Math.random() * 8) + 1;
+        return m === 1 ? 'just now' : m + ' min ago';
+      }
+
+      /* ─── VIEWER COUNT ────────────────────────── */
       var countEl = document.getElementById('live-viewer-count');
-      var current = BASE_VIEWERS + Math.floor(Math.random() * VARIANCE);
+      var current = BASE + Math.floor(Math.random() * SWING);
 
       function updateCount() {
-        var delta = Math.floor(Math.random() * 5) - 2;  // -2 to +2
-        current = Math.max(8, Math.min(BASE_VIEWERS + VARIANCE, current + delta));
+        var delta = Math.floor(Math.random() * 5) - 2;
+        current = Math.max(6, Math.min(BASE + SWING, current + delta));
         countEl.textContent = current;
       }
       updateCount();
-      setInterval(updateCount, TICK_MS);
+      setInterval(updateCount, TICK);
 
-      /* ── NOTIFICATION CARDS ─────────────────────── */
+      /* ─── NOTIFICATION CARDS ──────────────────── */
       var notifEl = document.getElementById('live-notifications');
-      var shown   = 0;
 
-      function showNotif() {
-        var ev   = events[shown % events.length];
-        shown++;
+      function showCard() {
+        var ev      = buildEvent();
+        var accent  = ACCENT[ev.type];
+        var title   = buildTitle(ev);
+        var sub     = buildSub(ev);
+        var ago     = (ev.type === 'stock' || ev.type === 'viewing') ? '' : timeAgo();
+        var showAvatar = (ev.type === 'purchase' || ev.type === 'cart' || ev.type === 'review');
+        var avatarHTML = showAvatar
+          ? '<div class="nt-avatar" style="background:' + accent + '22;color:' + accent + ';border:1px solid ' + accent + '44;">' + initials(ev.name) + '</div>'
+          : '<div class="nt-icon-wrap" style="background:' + accent + '18;color:' + accent + ';">' + SVG[ev.type] + '</div>';
 
         var card = document.createElement('div');
-        card.className = 'live-tracker-card';
+        card.className = 'nt-card';
         card.innerHTML =
-          '<span class="tracker-dot"></span>' +
-          '<span class="tracker-icon">' + ev.icon + '</span>' +
-          '<div class="tracker-text">' +
-            '<span class="tracker-title">' + ev.title + '</span>' +
-            '<span class="tracker-subtitle">' + ev.sub + '</span>' +
+          '<div class="nt-accent-bar" style="background:' + accent + ';"></div>' +
+          avatarHTML +
+          '<div class="nt-body">' +
+            '<p class="nt-title">' + title + '</p>' +
+            '<p class="nt-sub">' + sub + '</p>' +
+            (ago ? '<p class="nt-time">' + ago + '</p>' : '') +
           '</div>' +
-          '<button class="tracker-dismiss" aria-label="Dismiss">&times;</button>';
+          '<button class="nt-close" aria-label="Close">&#x2715;</button>' +
+          '<div class="nt-progress"><div class="nt-progress-bar" style="animation-duration:' + CARD_LIFE + 'ms;"></div></div>';
 
-        /* dismiss button */
-        card.querySelector('.tracker-dismiss').addEventListener('click', function() {
-          removeCard(card);
-        });
-
+        card.querySelector('.nt-close').addEventListener('click', function () { removeCard(card); });
         notifEl.appendChild(card);
 
-        /* auto-remove after duration */
-        var timer = setTimeout(function() { removeCard(card); }, NOTIF_DURATION);
-        card._timer = timer;
+        var t = setTimeout(function () { removeCard(card); }, CARD_LIFE);
+        card._t = t;
+
+        /* keep max 2 cards visible */
+        var cards = notifEl.querySelectorAll('.nt-card');
+        if (cards.length > 2) removeCard(cards[0]);
       }
 
       function removeCard(card) {
-        clearTimeout(card._timer);
-        card.style.transition = 'opacity 0.4s, transform 0.4s';
+        clearTimeout(card._t);
+        card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
         card.style.opacity    = '0';
-        card.style.transform  = 'translateX(-40px)';
-        setTimeout(function() {
-          if (card.parentNode) card.parentNode.removeChild(card);
-        }, 420);
+        card.style.transform  = 'translateX(-16px)';
+        setTimeout(function () { if (card.parentNode) card.parentNode.removeChild(card); }, 380);
       }
 
-      /* stagger the first card */
-      setTimeout(function() {
-        showNotif();
-        setInterval(showNotif, NOTIF_INTERVAL);
-      }, 3000);
+      function scheduleNext() {
+        var delay = MIN_INTERVAL + Math.random() * (MAX_INTERVAL - MIN_INTERVAL);
+        setTimeout(function () { showCard(); scheduleNext(); }, delay);
+      }
+
+      /* First card after 4 s, then random intervals */
+      setTimeout(function () { showCard(); scheduleNext(); }, 4000);
 
     })();
     </script>

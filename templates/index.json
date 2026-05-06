@@ -39,11 +39,8 @@
       "settings": {}
     },
     "pure-potent": {
-      "type": "pure-potent",
-      "settings": {
-        "title": "Pure. Potent. Precious.",
-        "product_limit": 4
-      }
+      "type": "pure-potent-grid",
+      "settings": {}
     },
     "fssai-trust": {
       "type": "fssai-trust",

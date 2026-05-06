@@ -5,8 +5,10 @@
       <p class="p-large">{{ section.settings.subtitle }}</p>
     </div>
 
-    <div class="pdf-container" data-aos="fade-up">
-      <iframe src="https://docs.google.com/gview?embedded=true&url={{ section.settings.pdf_url | url_encode }}" style="width:100%; height:100%;" frameborder="0"></iframe>
+    <div class="cert-card-wrapper" data-aos="fade-up">
+      <div class="pdf-container">
+        <iframe src="https://docs.google.com/gview?embedded=true&url={{ section.settings.pdf_url | url_encode }}" style="width:100%; height:100%;" frameborder="0"></iframe>
+      </div>
     </div>
 
     <div style="text-align: center; margin-top: 60px;">

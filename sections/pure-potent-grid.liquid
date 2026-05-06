@@ -1,67 +1,32 @@
 <section class="pure-potent-precious" style="padding: 100px 0; background-color: var(--color-white);">
   <div class="container">
     <div class="section-header" data-aos="fade-up" style="text-align: center; margin-bottom: 60px;">
-      <h2 class="h1" style="font-size: 64px; font-weight: 500;">Pure. Potent. Precious.</h2>
+      <h2 class="h1" style="font-size: 64px; font-weight: 500;">{{ section.settings.title }}</h2>
     </div>
 
     <div class="product-grid">
-      
-      <!-- Product 1 -->
-      <div class="custom-product-card" data-aos="fade-up">
-        <div class="card-image-wrapper">
-          <span class="sale-badge">50%</span>
-          <img src="{{ 'product-pickle.png' | asset_url }}" alt="Andhra Ooty Avakaya">
-          <div class="quick-view-bar">
-            <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
+      {% for block in section.blocks %}
+        <div class="custom-product-card" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+          <div class="card-image-wrapper">
+            {% if block.settings.sale_label != blank %}
+              <span class="sale-badge">{{ block.settings.sale_label }}</span>
+            {% endif %}
+            
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 800, height: 800, crop: 'center' }}" alt="{{ block.settings.title }}">
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag }}
+            {% endif %}
+
+            <div class="quick-view-bar">
+              <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>{{ block.settings.title }}</h3>
           </div>
         </div>
-        <div class="card-info">
-          <h3>Andhra Ooty Avakaya (Hill-Grown Vintage Pickle) 1/2kg</h3>
-        </div>
-      </div>
-
-      <!-- Product 2 -->
-      <div class="custom-product-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="card-image-wrapper">
-          <span class="sale-badge">33%</span>
-          <img src="{{ 'product-moringa.png' | asset_url }}" alt="Sacred Nati Moringa">
-          <div class="quick-view-bar">
-            <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
-          </div>
-        </div>
-        <div class="card-info">
-          <h3>Sacred Nati Moringa Leaf Powder (The Miracle Tree)</h3>
-        </div>
-      </div>
-
-      <!-- Product 3 -->
-      <div class="custom-product-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="card-image-wrapper">
-          <span class="sale-badge">33%</span>
-          <img src="{{ 'product-pickle.png' | asset_url }}" alt="Andhra Ooty Avakaya">
-          <div class="quick-view-bar">
-            <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
-          </div>
-        </div>
-        <div class="card-info">
-          <h3>Andhra Ooty Avakaya (Hill-Grown Vintage Pickle) 1kg</h3>
-        </div>
-      </div>
-
-      <!-- Product 4 -->
-      <div class="custom-product-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="card-image-wrapper">
-          <span class="sale-badge">24%</span>
-          <img src="{{ 'product-moringa.png' | asset_url }}" alt="Sacred Nati Moringa">
-          <div class="quick-view-bar">
-            <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
-          </div>
-        </div>
-        <div class="card-info">
-          <h3>Sacred Nati Moringa Leaf Powder (The Miracle Tree) 1kg</h3>
-        </div>
-      </div>
-
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -149,11 +114,48 @@
 
 {% schema %}
 {
-  "name": "Pure Potent Screenshot",
-  "settings": [],
+  "name": "Pure Potent Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Pure. Potent. Precious."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Product Title"
+        },
+        {
+          "type": "text",
+          "id": "sale_label",
+          "label": "Sale Badge Text",
+          "default": "SALE"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Pure Potent Screenshot"
+      "name": "Pure Potent Grid",
+      "blocks": [
+        { "type": "product", "settings": { "title": "Product 1" } },
+        { "type": "product", "settings": { "title": "Product 2" } },
+        { "type": "product", "settings": { "title": "Product 3" } },
+        { "type": "product", "settings": { "title": "Product 4" } }
+      ]
     }
   ]
 }

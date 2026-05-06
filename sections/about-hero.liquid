@@ -20,7 +20,11 @@
           <p style="opacity: 0.8;">Our cows are never tied. they graze freely in the deep forests of the Annamayya hills, feeding on 40+ varieties of wild herbs like Ashwagandha and Amruthaballi.</p>
         </div>
         <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-          <img src="https://worldsno1bestghee.com/wp-content/uploads/2026/03/Gemini_Generated_Image_dpn1vrdpn1vrdpn1-2-scaled.png" alt="Kapila Red Cow">
+          {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | image_url: width: 1000 }}" alt="{{ section.settings.image.alt | default: 'Kapila Red Cow' }}">
+          {% else %}
+            <img src="https://worldsno1bestghee.com/wp-content/uploads/2026/03/Gemini_Generated_Image_dpn1vrdpn1vrdpn1-2-scaled.png" alt="Kapila Red Cow">
+          {% endif %}
         </div>
       </div>
     </div>
@@ -30,6 +34,12 @@
 {% schema %}
 {
   "name": "About Hero",
-  "settings": []
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Featured Image"
+    }
+  ]
 }
 {% endschema %}

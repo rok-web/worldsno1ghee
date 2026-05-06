@@ -1,0 +1,145 @@
+<section class="image-with-text" style="padding: 100px 0; background-color: {{ section.settings.bg_color }}; overflow: hidden;">
+  <div class="container">
+    <div class="flex-container {% if section.settings.layout == 'right' %}reverse{% endif %}">
+      <div class="flex-item image-block" data-aos="{% if section.settings.layout == 'right' %}fade-left{% else %}fade-right{% endif %}">
+        {% if section.settings.image != blank %}
+          <div class="image-wrapper-styled">
+            <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt | default: section.settings.title }}" loading="lazy">
+          </div>
+        {% else %}
+          <div class="placeholder-bg">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="flex-item text-block" data-aos="{% if section.settings.layout == 'right' %}fade-right{% else %}fade-left{% endif %}">
+        <h2 class="h2">{{ section.settings.title }}</h2>
+        <div class="rich-content">
+          {{ section.settings.content }}
+        </div>
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" class="btn btn-gold">{{ section.settings.button_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .flex-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+  .flex-container.reverse {
+    flex-direction: row-reverse;
+  }
+  .flex-item {
+    flex: 1;
+  }
+  .image-wrapper-styled {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    transition: transform 0.5s ease;
+  }
+  .image-wrapper-styled:hover {
+    transform: scale(1.02);
+  }
+  .image-wrapper-styled img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .text-block .h2 {
+    margin-bottom: 30px;
+  }
+  .rich-content {
+    line-height: 1.8;
+    opacity: 0.8;
+    margin-bottom: 40px;
+    font-size: 18px;
+  }
+  .placeholder-bg {
+    background: #f4f4f4;
+    border-radius: 20px;
+    padding: 100px;
+    text-align: center;
+  }
+
+  @media (max-width: 1024px) {
+    .flex-container { gap: 40px; }
+  }
+
+  @media (max-width: 768px) {
+    .flex-container {
+      flex-direction: column !important;
+      gap: 40px !important;
+      text-align: center;
+    }
+    .flex-container.reverse {
+      flex-direction: column !important;
+    }
+    .image-wrapper-styled {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Image with Text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Select Image"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Image Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Sacred Traditions, Modern Purity"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Every drop of our ghee is a testament to the 3,000-year-old Vedic method. We preserve the nutrients that modern machinery destroys.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with Text"
+    }
+  ]
+}
+{% endschema %}

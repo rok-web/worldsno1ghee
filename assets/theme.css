@@ -1143,11 +1143,15 @@ button, .btn {
 
 /* --- ANIMATIONS --- */
 @keyframes color-blink {
-  0% { color: var(--color-gold); text-shadow: 0 0 10px rgba(200, 150, 30, 0.5); opacity: 1; }
-  25% { color: var(--color-gold-light); text-shadow: 0 0 20px rgba(232, 184, 75, 0.8); opacity: 0.9; }
-  50% { color: var(--color-white); text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); opacity: 1; }
-  75% { color: var(--color-gold-light); text-shadow: 0 0 20px rgba(232, 184, 75, 0.8); opacity: 0.9; }
-  100% { color: var(--color-gold); text-shadow: 0 0 10px rgba(200, 150, 30, 0.5); opacity: 1; }
+  0% { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
+  25% { color: #FFA500; text-shadow: 0 0 25px rgba(255, 165, 0, 0.8); }
+  50% { color: #FFFFFF; text-shadow: 0 0 35px rgba(255, 255, 255, 0.8); }
+  75% { color: #FFD700; text-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+  100% { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
+}
+
+.h2, h2.h2 {
+  animation: color-blink 3s ease-in-out infinite;
 }
 
 .pulse-text {

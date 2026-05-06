@@ -78,6 +78,83 @@
       "type": "bilona-journey",
       "settings": {}
     },
+    "product-showcase": {
+      "type": "product-showcase",
+      "settings": {
+        "title": "Best Sellers",
+        "subtitle": "Sacred nutrition for your family. Forest-grazed, Vedic prepared."
+      },
+      "blocks": {
+        "pickle_half": {
+          "type": "product",
+          "settings": {
+            "title": "Andhra Ooty Avakaya (Vintage Pickle) 1/2kg",
+            "price": 499,
+            "compare_at_price": 999,
+            "asset_image": "product-pickle.png",
+            "link": "/products/andhra-ooty-avakaya-1-2kg"
+          }
+        },
+        "moringa_half": {
+          "type": "product",
+          "settings": {
+            "title": "Sacred Nati Moringa Leaf Powder 1/2kg",
+            "price": 999,
+            "compare_at_price": 1500,
+            "asset_image": "product-moringa.png",
+            "link": "/products/sacred-nati-moringa-1-2kg"
+          }
+        },
+        "pickle_1kg": {
+          "type": "product",
+          "settings": {
+            "title": "Andhra Ooty Avakaya (Vintage Pickle) 1kg",
+            "price": 999,
+            "compare_at_price": 1500,
+            "asset_image": "product-pickle.png",
+            "link": "/products/andhra-ooty-avakaya-1kg"
+          }
+        },
+        "moringa_1kg": {
+          "type": "product",
+          "settings": {
+            "title": "Sacred Nati Moringa Leaf Powder 1kg",
+            "price": 1888,
+            "compare_at_price": 2500,
+            "asset_image": "product-moringa.png",
+            "link": "/products/sacred-nati-moringa-1kg"
+          }
+        },
+        "ghee_1kg": {
+          "type": "product",
+          "settings": {
+            "title": "Sacred Kapila A2 Cultured Ghee 1KG",
+            "price": 5999,
+            "compare_at_price": 9000,
+            "asset_image": "product-ghee.png",
+            "link": "/products/sacred-kapila-a2-ghee-1kg"
+          }
+        },
+        "ghee_half": {
+          "type": "product",
+          "settings": {
+            "title": "Sacred Kapila A2 Cultured Ghee 1/2KG",
+            "price": 2999,
+            "compare_at_price": 4000,
+            "asset_image": "product-ghee.png",
+            "link": "/products/sacred-kapila-a2-ghee-1-2kg"
+          }
+        }
+      },
+      "block_order": [
+        "pickle_half",
+        "moringa_half",
+        "pickle_1kg",
+        "moringa_1kg",
+        "ghee_1kg",
+        "ghee_half"
+      ]
+    },
     "pure-potent": {
       "type": "pure-potent-grid",
       "settings": {}
@@ -122,6 +199,7 @@
     "golden-elixir",
     "vedic-method",
     "bilona-journey",
+    "product-showcase",
     "pure-potent",
     "fssai-trust",
     "testimonials",

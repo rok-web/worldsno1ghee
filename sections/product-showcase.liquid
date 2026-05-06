@@ -1,0 +1,126 @@
+<section class="product-showcase" style="padding: 80px 0;">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up" style="text-align: center; margin-bottom: 60px;">
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="p-large">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="product-grid">
+      {% for block in section.blocks %}
+        <div class="product-card" data-aos="fade-up">
+          <div class="product-image">
+            {% if block.settings.compare_at_price > block.settings.price %}
+              {% assign price_val = block.settings.price | times: 1.0 %}
+              {% assign compare_val = block.settings.compare_at_price | times: 1.0 %}
+              {% assign savings = compare_val | minus: price_val | divided_by: compare_val | times: 100 | round %}
+              <span class="sale-badge">-{{ savings }}%</span>
+            {% endif %}
+            
+            <a href="{{ block.settings.link }}">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% elsif block.settings.asset_image != blank %}
+                <img src="{{ block.settings.asset_image | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag }}
+              {% endif %}
+            </a>
+          </div>
+
+          <div class="product-info">
+            <h3 class="product-title">
+              <a href="{{ block.settings.link }}">{{ block.settings.title }}</a>
+            </h3>
+            
+            <div class="product-price">
+              {% if block.settings.compare_at_price > 0 %}
+                <span class="price-old">₹{{ block.settings.compare_at_price }}</span>
+              {% endif %}
+              <span class="price-new">₹{{ block.settings.price }}</span>
+            </div>
+
+            <a href="{{ block.settings.link }}" class="quick-buy-btn btn" style="display: block; text-align: center; text-decoration: none;">
+              Buy Now
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Sacred nutrition for your family."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image (Shopify Media)"
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "Asset Image Name (e.g. product-ghee.png)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Product Title"
+        },
+        {
+          "type": "number",
+          "id": "price",
+          "label": "Price (e.g. 499)"
+        },
+        {
+          "type": "number",
+          "id": "compare_at_price",
+          "label": "Compare at Price (e.g. 999)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Product Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Showcase",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "title": "A2 Cultured Ghee (1KG)",
+            "price": 5999,
+            "compare_at_price": 9000,
+            "asset_image": "product-ghee.png"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

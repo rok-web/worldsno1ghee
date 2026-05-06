@@ -7,46 +7,57 @@
       {% endif %}
     </div>
 
-    <div class="product-grid">
-      {% for block in section.blocks %}
-        <div class="product-card" data-aos="fade-up">
-          <div class="product-image">
-            {% if block.settings.compare_at_price > block.settings.price %}
-              {% assign price_val = block.settings.price | times: 1.0 %}
-              {% assign compare_val = block.settings.compare_at_price | times: 1.0 %}
-              {% assign savings = compare_val | minus: price_val | divided_by: compare_val | times: 100 | round %}
-              <span class="sale-badge">-{{ savings }}%</span>
-            {% endif %}
-            
-            <a href="{{ block.settings.link }}">
-              {% if block.settings.image != blank %}
-                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy">
-              {% elsif block.settings.asset_image != blank %}
-                <img src="{{ block.settings.asset_image | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
-              {% else %}
-                {{ 'product-1' | placeholder_svg_tag }}
+    <div class="product-carousel-wrapper">
+      <div class="product-carousel" id="ProductCarousel-{{ section.id }}">
+        {% for block in section.blocks %}
+          <div class="product-card" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+            <div class="product-image">
+              {% if block.settings.compare_at_price > block.settings.price %}
+                {% assign price_val = block.settings.price | times: 1.0 %}
+                {% assign compare_val = block.settings.compare_at_price | times: 1.0 %}
+                {% assign savings = compare_val | minus: price_val | divided_by: compare_val | times: 100 | round %}
+                <span class="sale-badge">-{{ savings }}%</span>
               {% endif %}
-            </a>
-          </div>
-
-          <div class="product-info">
-            <h3 class="product-title">
-              <a href="{{ block.settings.link }}">{{ block.settings.title }}</a>
-            </h3>
-            
-            <div class="product-price">
-              {% if block.settings.compare_at_price > 0 %}
-                <span class="price-old">₹{{ block.settings.compare_at_price }}</span>
-              {% endif %}
-              <span class="price-new">₹{{ block.settings.price }}</span>
+              
+              <a href="{{ block.settings.link }}">
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy">
+                {% elsif block.settings.asset_image != blank %}
+                  <img src="{{ block.settings.asset_image | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {% endif %}
+              </a>
             </div>
 
-            <a href="{{ block.settings.link }}" class="quick-buy-btn btn" style="display: block; text-align: center; text-decoration: none;">
-              Buy Now
-            </a>
+            <div class="product-info">
+              <h3 class="product-title">
+                <a href="{{ block.settings.link }}">{{ block.settings.title }}</a>
+              </h3>
+              
+              <div class="product-price">
+                {% if block.settings.compare_at_price > 0 %}
+                  <span class="price-old">₹{{ block.settings.compare_at_price }}</span>
+                {% endif %}
+                <span class="price-new">₹{{ block.settings.price }}</span>
+              </div>
+
+              <a href="{{ block.settings.link }}" class="quick-buy-btn btn" style="display: block; text-align: center; text-decoration: none;">
+                Buy Now
+              </a>
+            </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
+      
+      <div class="carousel-nav">
+        <button class="carousel-btn prev" onclick="document.getElementById('ProductCarousel-{{ section.id }}').scrollBy({left: -300, behavior: 'smooth'})">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="carousel-btn next" onclick="document.getElementById('ProductCarousel-{{ section.id }}').scrollBy({left: 300, behavior: 'smooth'})">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>

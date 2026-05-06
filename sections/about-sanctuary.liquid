@@ -1,0 +1,36 @@
+<section class="about-sanctuary" style="padding: 120px 0; background-color: var(--color-earth-dark); color: white; overflow: hidden;">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+      
+      <div class="sanctuary-content" data-aos="fade-right">
+        <h2 class="h2" style="color: var(--color-gold); margin-bottom: 30px;">Not a Shed. A Sanctuary.</h2>
+        <p class="p-large" style="line-height: 1.8; opacity: 0.9; font-size: 24px; font-style: italic;">
+          "Our cows don't live in sheds. They live in the forest. We don't use hormones. We use love and ancient Vedic care."
+        </p>
+        <div style="margin-top: 40px; border-left: 3px solid var(--color-gold); padding-left: 30px; opacity: 0.8;">
+          <p>Every Kapila cow in our care is treated as family. We follow the 'Ahinsa' (non-violent) method, ensuring the calf is well-fed before we take any milk for Ghee. This respect for life is what makes our Ghee a true elixir.</p>
+        </div>
+      </div>
+
+      <div class="sanctuary-image" data-aos="fade-left">
+        <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+          <img src="{{ 'about-sanctuary-bg.png' | asset_url }}" alt="Sacred Bond with Kapila Cow" style="width: 100%; display: block;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Sanctuary",
+  "settings": [],
+  "presets": [
+    {
+      "name": "About Sanctuary"
+    }
+  ]
+}
+{% endschema %}

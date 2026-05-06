@@ -157,7 +157,60 @@
     },
     "pure-potent": {
       "type": "pure-potent-grid",
-      "settings": {}
+      "settings": {
+        "title": "Pure. Potent. Precious."
+      },
+      "blocks": {
+        "prod_1": {
+          "type": "product",
+          "settings": {
+            "title": "Andhra Ooty Avakaya (Vintage Pickle) 1/2kg",
+            "sale_label": "50%",
+            "asset_image": "product-pickle.png"
+          }
+        },
+        "prod_2": {
+          "type": "product",
+          "settings": {
+            "title": "Sacred Nati Moringa Leaf Powder 1/2kg",
+            "sale_label": "33%",
+            "asset_image": "product-moringa.png"
+          }
+        },
+        "prod_3": {
+          "type": "product",
+          "settings": {
+            "title": "Andhra Ooty Avakaya (Vintage Pickle) 1kg",
+            "sale_label": "33%",
+            "asset_image": "product-pickle.png"
+          }
+        },
+        "prod_4": {
+          "type": "product",
+          "settings": {
+            "title": "Sacred Nati Moringa Leaf Powder 1kg",
+            "sale_label": "24%",
+            "asset_image": "product-moringa.png"
+          }
+        },
+        "prod_5": {
+          "type": "product",
+          "settings": {
+            "title": "Sacred Kapila A2 Cultured Ghee 1KG",
+            "sale_label": "33%",
+            "asset_image": "product-ghee.png"
+          }
+        },
+        "prod_6": {
+          "type": "product",
+          "settings": {
+            "title": "Sacred Kapila A2 Cultured Ghee 1/2KG",
+            "sale_label": "25%",
+            "asset_image": "product-ghee.png"
+          }
+        }
+      },
+      "block_order": ["prod_1", "prod_2", "prod_3", "prod_4", "prod_5", "prod_6"]
     },
     "gallery": {
       "type": "media-gallery",

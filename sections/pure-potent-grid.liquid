@@ -14,6 +14,8 @@
             
             {% if block.settings.image != blank %}
               <img src="{{ block.settings.image | image_url: width: 800, height: 800, crop: 'center' }}" alt="{{ block.settings.title }}">
+            {% elsif block.settings.asset_image != blank %}
+              <img src="{{ block.settings.asset_image | asset_url }}" alt="{{ block.settings.title }}">
             {% else %}
               {{ 'product-1' | placeholder_svg_tag }}
             {% endif %}
@@ -34,8 +36,8 @@
 <style>
   .pure-potent-precious .product-grid {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 40px;
   }
 
   .card-image-wrapper {
@@ -131,7 +133,13 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Product Image"
+          "label": "1. Upload from Shopify (Recommended)"
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "2. Fallback Asset Name (Advanced)",
+          "info": "Only use this if you want to use a file from the theme assets folder."
         },
         {
           "type": "text",

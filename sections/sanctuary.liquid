@@ -8,7 +8,11 @@
     </div>
     
     <div class="sanctuary-image" data-aos="fade-up">
-      <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="Sanctuary Farm" loading="lazy">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="Sanctuary Farm" loading="lazy">
+      {% else %}
+        <img src="{{ 'sacred-sanctuary-bg.png' | asset_url }}" alt="Sanctuary Farm" loading="lazy">
+      {% endif %}
     </div>
   </div>
 </section>

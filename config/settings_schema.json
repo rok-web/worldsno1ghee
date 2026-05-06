@@ -1,1 +1,81 @@
+<<<<<<< HEAD
 []
+=======
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Worldsno1bestghee",
+    "theme_version": "1.0.0",
+    "theme_author": "Antigravity",
+    "theme_documentation_url": "https://worldsno1bestghee.com",
+    "theme_support_url": "mailto:Customer@worldsno1bestghee.in"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_gold",
+        "label": "Gold",
+        "default": "#C8961E"
+      },
+      {
+        "type": "color",
+        "id": "color_gold_light",
+        "label": "Gold Light",
+        "default": "#E8B84B"
+      },
+      {
+        "type": "color",
+        "id": "color_cream_bg",
+        "label": "Cream/BG",
+        "default": "#FDFAF4"
+      },
+      {
+        "type": "color",
+        "id": "color_earth_dark",
+        "label": "Earth Dark",
+        "default": "#1A1208"
+      },
+      {
+        "type": "color",
+        "id": "color_earth_brown",
+        "label": "Earth Brown",
+        "default": "#5C3D1E"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#4A3520"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_whatsapp_url",
+        "label": "WhatsApp URL",
+        "default": "https://wa.me/918555926620"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_url",
+        "label": "Instagram URL"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon Image"
+      }
+    ]
+  }
+]
+>>>>>>> 11ce6c6 (Complete theme rebuild: pixel-perfect replica of worldsno1bestghee.com)

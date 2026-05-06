@@ -3,9 +3,17 @@
     "main": {
       "type": "product-hero",
       "settings": {}
+    },
+    "recommendations": {
+      "type": "featured-products",
+      "settings": {
+        "title": "You May Also Like",
+        "product_limit": 4
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "recommendations"
   ]
 }

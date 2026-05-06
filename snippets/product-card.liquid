@@ -1,24 +1,27 @@
-<div class="product-card">
-  {% if product.compare_at_price > product.price %}
-    <span class="badge">SALE</span>
-  {% endif %}
-  
-  <a href="{{ product.url }}">
-    <div class="product-card-image">
-      {{ product.featured_media | image_url: width: 400 | image_tag: loading: 'lazy' }}
-    </div>
-    <h3>{{ product.title }}</h3>
-  </a>
-
-  <div class="product-price">
+<div class="product-card" data-aos="fade-up">
+  <div class="product-image">
     {% if product.compare_at_price > product.price %}
-      <span class="compare-at">{{ product.compare_at_price | money }}</span>
+      {% assign savings = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+      <span class="sale-badge">{{ savings }}% OFF</span>
     {% endif %}
-    <span>{{ product.price | money }}</span>
+    
+    <a href="{{ product.url }}">
+      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+    </a>
   </div>
 
-  <form method="post" action="/cart/add" class="product-form">
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-    <button type="submit" class="btn btn-outline" style="width: 100%; margin-top: 15px;">Add to Cart</button>
-  </form>
+  <div class="product-info">
+    <h3 class="product-title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    
+    {% render 'price', product: product %}
+
+    <form method="post" action="/cart/add">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <button type="submit" class="quick-buy-btn btn">
+        Buy Now
+      </button>
+    </form>
+  </div>
 </div>

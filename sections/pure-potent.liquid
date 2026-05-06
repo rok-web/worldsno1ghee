@@ -1,0 +1,81 @@
+<section class="pure-potent" style="padding: 100px 0; background-color: var(--color-white);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      <p class="p-large">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));">
+      {%- assign collection = collections[section.settings.collection] -%}
+      {% for product in collection.products limit: section.settings.product_limit %}
+        {% render 'product-card', product: product %}
+      {% else %}
+        {% for i in (1..6) %}
+          <div class="product-card placeholder">
+            <div class="product-image" style="background: #eee; height: 350px;"></div>
+            <div class="product-info">
+              <h3 class="product-title">Sacred Product</h3>
+              <div class="product-price">₹999</div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+    <div style="text-align: center; margin-top: 60px;">
+      <a href="{{ section.settings.cta_link }}" class="btn btn-gold">
+        {{ section.settings.cta_label }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pure Potent Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Pure. Potent. Precious."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "The miracles of nature, bottled for you."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 3,
+      "max": 12,
+      "step": 3,
+      "default": 6,
+      "label": "Number of products"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button Label",
+      "default": "Buy Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pure Potent Grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,11 +1,21 @@
 {
   "sections": {
-    "main": {
-      "type": "about-story",
+    "hero": {
+      "type": "about-hero",
+      "settings": {}
+    },
+    "stats": {
+      "type": "about-stats",
+      "settings": {}
+    },
+    "gallery": {
+      "type": "about-gallery",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "hero",
+    "stats",
+    "gallery"
   ]
 }

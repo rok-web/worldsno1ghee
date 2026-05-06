@@ -1,29 +1,6 @@
-{%- liquid
-  if use_variant
-    assign target = product.selected_or_first_available_variant
-  else
-    assign target = product
-  endif
-
-  assign compare_at_price = target.compare_at_price
-  assign price = target.price
-  assign available = target.available | default: false
-  assign money_price = price | money
--%}
-
-<div class="price">
-  <div class="price__container">
-    <div class="price__regular">
-      <span class="price-item price-item--regular" style="color: var(--color-gold); font-weight: 700; font-size: 1.2em;">
-        {{ money_price }}
-      </span>
-    </div>
-    {%- if compare_at_price > price -%}
-      <div class="price__sale">
-        <span class="price-item price-item--sale" style="color: #999; text-decoration: line-through; margin-left: 10px; font-size: 0.9em;">
-          {{ compare_at_price | money }}
-        </span>
-      </div>
-    {%- endif -%}
-  </div>
+<div class="product-price">
+  {% if product.compare_at_price > product.price %}
+    <span class="price-old">{{ product.compare_at_price | money }}</span>
+  {% endif %}
+  <span class="price-new">{{ product.price | money }}</span>
 </div>

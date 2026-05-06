@@ -1,0 +1,44 @@
+<section class="sanctuary">
+  <div class="container">
+    <div class="sanctuary-content" data-aos="fade-up">
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      <p class="p-large" style="margin-top: 20px; max-width: 800px; margin-inline: auto; opacity: 0.8;">
+        {{ section.settings.text }}
+      </p>
+    </div>
+    
+    <div class="sanctuary-image" data-aos="fade-up">
+      <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="Sanctuary Farm" loading="lazy">
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sanctuary",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Not a Farm. A Sanctuary."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Our cows don't live in sheds. They live in the forest. We don't use hormones. We use love and ancient Vedic care."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Sanctuary Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sanctuary"
+    }
+  ]
+}
+{% endschema %}

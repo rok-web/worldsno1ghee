@@ -1,20 +1,72 @@
-<div class="announcement-bar">
-  <div class="container marquee-container">
+<section class="announcement-bar">
+  <div class="marquee-wrapper">
     <div class="marquee-content">
-      {{ section.settings.text }}
+      {% for i in (1..4) %}
+        <span class="marquee-item">Bilona Method &bull;</span>
+        <span class="marquee-item">COD Available &bull;</span>
+        <span class="marquee-item">100% Forest Grazed &bull;</span>
+        <span class="marquee-item">FSSAI Certified &bull;</span>
+        <span class="marquee-item">3000+ Happy Families &bull;</span>
+      {% endfor %}
     </div>
   </div>
-</div>
+</section>
+
+<style>
+  .announcement-bar {
+    background-color: var(--color-earth-dark);
+    color: var(--color-gold-light);
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 101;
+  }
+  
+  .marquee-wrapper {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 0;
+  }
+
+  .marquee-content {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    min-width: 100%;
+    gap: 0;
+    animation: scroll-left 40s linear infinite;
+  }
+
+  .marquee-item {
+    padding: 0 30px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+
+  /* Pause on hover */
+  .announcement-bar:hover .marquee-content {
+    animation-play-state: paused;
+  }
+</style>
 
 {% schema %}
 {
   "name": "Announcement Bar",
   "settings": [
     {
-      "type": "text",
-      "id": "text",
-      "label": "Announcement Text",
-      "default": "FREE SHIPPING ON ORDERS OVER ₹1999 | COD AVAILABLE"
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
     }
   ]
 }

@@ -1,37 +1,59 @@
-<section class="section-padding">
+<section class="contact-section">
   <div class="container">
-    <div class="section-title">
-      <h2>Have questions? Get in touch!</h2>
-    </div>
+    <div class="contact-container">
+      <!-- Contact Info -->
+      <div class="contact-info" data-aos="fade-right">
+        <h2 class="h2" style="margin-bottom: 40px;">Get in Touch</h2>
+        
+        <div class="contact-info-block">
+          <h4 class="footer-heading">Address</h4>
+          <p>#15-116-12-2-10, Kamma Gadda Street, Madanapalle, Annamayya, Andhra Pradesh-517325</p>
+        </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 50px;">
-      <div>
-        <h3 style="margin-bottom: 20px;">Contact Details</h3>
-        <p style="margin-bottom: 20px;"><strong>Address:</strong><br>#15-116-12-2-10, Kamma Gadda Street, Madanapalle, Annamayya, Andhra Pradesh-517325</p>
-        <p style="margin-bottom: 20px;"><strong>Email:</strong><br>Customer@worldsno1bestghee.in</p>
-        <p style="margin-bottom: 20px;"><strong>Phone:</strong><br>+91 8555-926620</p>
+        <div class="contact-info-block">
+          <h4 class="footer-heading">Email</h4>
+          <p>Customer@worldsno1bestghee.in</p>
+        </div>
+
+        <div class="contact-info-block">
+          <h4 class="footer-heading">WhatsApp</h4>
+          <p>+91 8555-926620</p>
+        </div>
+
+        <div class="contact-info-block">
+          <h4 class="footer-heading">FSSAI No</h4>
+          <p>10124025000164</p>
+        </div>
       </div>
 
-      <div>
-        {% form 'contact' %}
-          {% if form.posted_successfully? %}
-            <p style="color: green; margin-bottom: 20px;">Thanks for contacting us. We'll get back to you as soon as possible.</p>
-          {% endif %}
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper" data-aos="fade-left">
+        {%- form 'contact', id: 'ContactForm' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="form-success" style="padding: 20px; background: #e6ffed; border: 1px solid #b7eb8f; margin-bottom: 20px;">
+              Thanks for contacting us. We'll get back to you as soon as possible.
+            </div>
+          {%- elsif form.errors -%}
+            <div class="form-errors" style="padding: 20px; background: #fff1f0; border: 1px solid #ffa39e; margin-bottom: 20px;">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
 
-          <div style="margin-bottom: 15px;">
-            <input type="text" name="contact[name]" placeholder="Name" style="width: 100%; padding: 12px; border: 1px solid #ddd;" required>
+          <div class="field">
+            <input type="text" name="contact[name]" id="ContactForm-name" placeholder="Name" required>
           </div>
-          <div style="margin-bottom: 15px;">
-            <input type="email" name="contact[email]" placeholder="Email" style="width: 100%; padding: 12px; border: 1px solid #ddd;" required>
+          <div class="field">
+            <input type="email" name="contact[email]" id="ContactForm-email" placeholder="Email" required>
           </div>
-          <div style="margin-bottom: 15px;">
-            <input type="tel" name="contact[phone]" placeholder="Phone Number" style="width: 100%; padding: 12px; border: 1px solid #ddd;">
+          <div class="field">
+            <input type="tel" name="contact[phone]" id="ContactForm-phone" placeholder="Phone Number">
           </div>
-          <div style="margin-bottom: 15px;">
-            <textarea name="contact[body]" placeholder="Message" rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd;" required></textarea>
+          <div class="field">
+            <textarea rows="6" name="contact[body]" id="ContactForm-body" placeholder="Message" required></textarea>
           </div>
-          <button type="submit" class="btn">Send Message</button>
-        {% endform %}
+          
+          <button type="submit" class="btn btn-gold" style="width: 100%;">Send Message</button>
+        {%- endform -%}
       </div>
     </div>
   </div>

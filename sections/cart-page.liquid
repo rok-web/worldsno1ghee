@@ -1,54 +1,70 @@
-<section class="section-padding">
+<section class="cart-page-section" style="padding: 100px 0;">
   <div class="container">
-    <div class="section-title">
-      <h2>Your Cart</h2>
-    </div>
+    <h1 class="h2" style="margin-bottom: 60px;">Your Cart</h1>
 
     {% if cart.item_count > 0 %}
       <form action="/cart" method="post" novalidate>
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
-          <thead>
-            <tr style="border-bottom: 2px solid var(--color-gold);">
-              <th style="text-align: left; padding: 15px 0;">Product</th>
-              <th style="text-align: center; padding: 15px 0;">Quantity</th>
-              <th style="text-align: right; padding: 15px 0;">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in cart.items %}
-              <tr style="border-bottom: 1px solid #eee;">
-                <td style="padding: 20px 0;">
-                  <div style="display: flex; align-items: center; gap: 20px;">
-                    <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.title }}" style="border-radius: 4px;">
-                    <div>
-                      <h4 style="margin: 0;">{{ item.product.title }}</h4>
-                      <p style="margin: 5px 0 0; color: #666;">{{ item.variant.title }}</p>
-                      <a href="/cart/change?line={{ forloop.index }}&quantity=0" style="color: #E74C3C; font-size: 12px; font-weight: 700;">Remove</a>
-                    </div>
-                  </div>
-                </td>
-                <td style="text-align: center;">
-                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width: 60px; padding: 5px; text-align: center; border: 1px solid #ddd;">
-                </td>
-                <td style="text-align: right; font-weight: 700;">
-                  {{ item.final_line_price | money }}
-                </td>
+        <div class="cart-items">
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 1px solid #ddd; text-align: left;">
+                <th style="padding-bottom: 20px;">Product</th>
+                <th style="padding-bottom: 20px;">Price</th>
+                <th style="padding-bottom: 20px;">Quantity</th>
+                <th style="padding-bottom: 20px; text-align: right;">Total</th>
               </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {% for item in cart.items %}
+                <tr style="border-bottom: 1px solid #eee;">
+                  <td style="padding: 30px 0;">
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                      <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title }}" style="width: 100px; border-radius: 8px;">
+                      <div>
+                        <h4 class="h4" style="font-size: 18px;">{{ item.product.title }}</h4>
+                        {% unless item.variant.title contains 'Default' %}
+                          <p style="font-size: 14px; opacity: 0.6;">{{ item.variant.title }}</p>
+                        {% endunless %}
+                        <a href="{{ item.url_to_remove }}" style="font-size: 12px; color: var(--color-gold); margin-top: 10px; display: inline-block;">Remove</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ item.price | money }}</td>
+                  <td>
+                    <div class="qty-input" style="width: 120px;">
+                      <button type="submit" name="updates[]" value="{{ item.quantity | minus: 1 }}" class="qty-btn">-</button>
+                      <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width: 40px; text-align: center; border: none;">
+                      <button type="submit" name="updates[]" value="{{ item.quantity | plus: 1 }}" class="qty-btn">+</button>
+                    </div>
+                  </td>
+                  <td style="text-align: right; font-weight: 600;">{{ item.final_line_price | money }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
 
-        <div style="text-align: right;">
-          <h3 style="margin-bottom: 10px;">Subtotal: {{ cart.total_price | money }}</h3>
-          <p style="color: #666; margin-bottom: 20px;">Taxes and shipping calculated at checkout</p>
-          <button type="submit" name="update" class="btn btn-outline" style="margin-right: 15px;">Update Cart</button>
-          <button type="submit" name="checkout" class="btn">Check Out</button>
+        <div class="cart-footer" style="display: flex; justify-content: flex-end; margin-top: 60px;">
+          <div style="max-width: 400px; width: 100%;">
+            <div style="display: flex; justify-content: space-between; font-size: 24px; font-weight: 600; margin-bottom: 30px;">
+              <span>Subtotal</span>
+              <span>{{ cart.total_price | money }}</span>
+            </div>
+            <p style="font-size: 14px; opacity: 0.6; margin-bottom: 30px;">Shipping & taxes calculated at checkout</p>
+            
+            <div class="cart-note" style="margin-bottom: 30px;">
+              <label style="display: block; margin-bottom: 10px;">Order Note</label>
+              <textarea name="note" rows="4" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 4px;">{{ cart.note }}</textarea>
+            </div>
+
+            <button type="submit" name="checkout" class="btn btn-gold" style="width: 100%; padding: 20px;">Check Out</button>
+          </div>
         </div>
       </form>
     {% else %}
       <div style="text-align: center; padding: 100px 0;">
-        <p style="font-size: 20px; margin-bottom: 30px;">Your cart is currently empty.</p>
-        <a href="/collections/all" class="btn">Continue Shopping</a>
+        <p class="p-large">Your cart is currently empty.</p>
+        <a href="/collections/all" class="btn btn-gold" style="margin-top: 30px;">Continue Shopping</a>
       </div>
     {% endif %}
   </div>

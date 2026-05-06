@@ -3,22 +3,29 @@
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
-        "settings": {
-          "text": "FREE SHIPPING ON ORDERS OVER ₹1999 | COD AVAILABLE"
-        }
+        "settings": {}
       },
       "header": {
         "type": "header",
         "settings": {
-          "menu": "main-menu"
+          "cta_text": "Buy A2 Ghee"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "tagline": "Modern machinery destroys nutrients. We use the 3,000-year-old Bilona Method."
         }
       }
     },
     "settings": {
       "color_gold": "#C8961E",
-      "color_cream": "#FDFAF4",
+      "color_gold_light": "#E8B84B",
+      "color_cream_bg": "#FDFAF4",
+      "color_earth_dark": "#1A1208",
       "color_earth_brown": "#5C3D1E",
-      "color_dark": "#1A1208"
+      "color_text": "#4A3520",
+      "social_whatsapp_url": "https://wa.me/918555926620"
     }
   }
 }

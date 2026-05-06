@@ -1,11 +1,21 @@
-<section class="about-gallery">
-  <h2>Our Organic Pictures from the Farm</h2>
-  <div class="about-gallery__grid">
-    <img src="https://worldsno1bestghee.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-02-19-at-13.59.33-1.jpeg" alt="Farm Photo 1" />
-    <img src="https://worldsno1bestghee.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-02-19-at-13.59.34-1.jpeg" alt="Farm Photo 2" />
+<section class="about-gallery" style="padding: 100px 0; background-color: var(--color-cream-bg);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="h2">Life at the Sanctuary</h2>
+    </div>
+
+    <div class="gallery-masonry">
+      {% assign images = "WhatsApp-Image-2026-02-19-at-13.59.33.jpeg,WhatsApp-Image-2026-02-19-at-13.59.33-1.jpeg,WhatsApp-Image-2026-02-19-at-13.59.34-1.jpeg,WhatsApp-Image-2026-02-19-at-13.59.34-2.jpeg,WhatsApp-Image-2026-02-19-at-13.59.35.jpeg,WhatsApp-Image-2026-02-19-at-13.59.35-1.jpeg,WhatsApp-Image-2026-02-19-at-13.59.35-2.jpeg,WhatsApp-Image-2026-02-19-at-13.59.36-1.jpeg" | split: "," %}
+      
+      {% for img in images %}
+        <div class="gallery-item" data-aos="fade-up">
+          <img src="https://worldsno1bestghee.com/wp-content/uploads/2026/03/{{ img }}" alt="Farm Life" loading="lazy">
+        </div>
+      {% endfor %}
+    </div>
   </div>
-  <h3>Our Pure Cow Dung</h3>
 </section>
+
 {% schema %}
 {
   "name": "About Gallery",

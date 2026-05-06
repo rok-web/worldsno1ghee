@@ -1,40 +1,60 @@
-<section class="section-padding">
-  <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
-    <div class="product-images">
-      <img src="{{ product.featured_media | image_url: width: 800 }}" alt="{{ product.title }}" style="width: 100%; border-radius: 8px;">
-    </div>
-    
-    <div class="product-info">
-      <h1 style="font-size: 42px; margin-bottom: 10px;">{{ product.title }}</h1>
-      
-      <div class="product-price" style="font-size: 28px; margin-bottom: 20px;">
-        {% if product.compare_at_price > product.price %}
-          <span style="text-decoration: line-through; color: #999; margin-right: 15px;">{{ product.compare_at_price | money }}</span>
-        {% endif %}
-        <span style="color: var(--color-gold); font-weight: 700;">{{ product.price | money }}</span>
+<section class="product-hero">
+  <div class="container">
+    <div class="product-main">
+      <!-- Image Gallery -->
+      <div class="product-gallery" data-aos="fade-right">
+        <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title }}" id="MainProductImage">
+        <div class="product-thumbnails" style="display: flex; gap: 10px; margin-top: 20px;">
+          {% for image in product.images %}
+            <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt }}" style="width: 80px; cursor: pointer; border-radius: 4px;" onclick="document.getElementById('MainProductImage').src='{{ image | image_url: width: 1000 }}'">
+          {% endfor %}
+        </div>
       </div>
 
-      <div class="product-description" style="margin-bottom: 30px;">
-        {{ product.description }}
-      </div>
-
-      <form method="post" action="/cart/add" class="product-form">
-        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <!-- Details -->
+      <div class="product-details" data-aos="fade-left">
+        <nav class="breadcrumb" style="margin-bottom: 20px; font-size: 14px; opacity: 0.6;">
+          <a href="/">Home</a> / <a href="/collections/all">Shop</a> / {{ product.title }}
+        </nav>
         
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; margin-bottom: 10px; font-weight: 700;">Quantity</label>
-          <input type="number" name="quantity" value="1" min="1" style="padding: 10px; width: 80px; border: 1px solid #ddd;">
+        <h1 class="h2">{{ product.title }}</h1>
+        <div class="price">
+          {% render 'price', product: product %}
         </div>
 
-        <button type="submit" class="btn" style="width: 100%; margin-bottom: 15px;">Add to Cart</button>
-        <button type="button" class="btn btn-outline" style="width: 100%;">Buy It Now</button>
-      </form>
+        <div class="product-description" style="margin: 30px 0;">
+          {{ product.description }}
+        </div>
 
-      <div class="trust-badges" style="margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
-        <div style="background: #f9f9f9; padding: 10px; text-align: center; border-radius: 4px; font-size: 13px;">✅ Cash on Delivery</div>
-        <div style="background: #f9f9f9; padding: 10px; text-align: center; border-radius: 4px; font-size: 13px;">🚚 Free Shipping</div>
-        <div style="background: #f9f9f9; padding: 10px; text-align: center; border-radius: 4px; font-size: 13px;">📦 Open Box Delivery</div>
-        <div style="background: #f9f9f9; padding: 10px; text-align: center; border-radius: 4px; font-size: 13px;">🧪 Lab Tested</div>
+        <form method="post" action="/cart/add" id="product-form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          
+          {% unless product.has_only_default_variant %}
+            <div class="variant-selector" style="margin-bottom: 30px;">
+              <label style="display: block; margin-bottom: 10px; font-weight: 600;">Select Size</label>
+              <select name="id" style="width: 100%; padding: 15px; border-radius: 4px; border: 1px solid #ddd;">
+                {% for variant in product.variants %}
+                  <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endunless %}
+
+          <div class="quantity-selector">
+            <label style="font-weight: 600;">Quantity</label>
+            <div class="qty-input">
+              <button type="button" class="qty-btn" onclick="let q=document.getElementById('Quantity'); if(q.value>1) q.value--;">-</button>
+              <input type="number" id="Quantity" name="quantity" value="1" min="1" style="width: 60px; text-align: center; border: none;">
+              <button type="button" class="qty-btn" onclick="let q=document.getElementById('Quantity'); q.value++;">+</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 30px; padding: 20px;">
+            Add to Cart
+          </button>
+        </form>
+
+        {% section 'product-trust-badges' %}
       </div>
     </div>
   </div>

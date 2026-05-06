@@ -1,10 +1,29 @@
-<section class="hero" style="background: url('https://worldsno1bestghee.com/wp-content/uploads/2024/04/hero-bg.jpg') center/cover no-repeat; padding: 150px 0; position: relative;">
-  <div class="container" style="position: relative; z-index: 2; text-align: center; color: white;">
-    <h1 style="font-size: 80px; color: white; margin-bottom: 20px;">Taste of Farming</h1>
-    <p style="font-size: 20px; max-width: 600px; margin: 0 auto 30px;">Direct from the forest to your home. Ancient Vedic Ghee handcrafted with love.</p>
-    <a href="/collections/all" class="btn">Buy A2 Ghee</a>
+<section class="hero" style="background-image: url('{{ section.settings.image | image_url: width: 2000 }}');">
+  <div class="container">
+    <div class="hero-content" data-aos="fade-up">
+      <span class="hero-tagline">{{ section.settings.tagline }}</span>
+      <h1 class="hero-title h1">{{ section.settings.title }}</h1>
+      
+      <a href="{{ section.settings.button_link }}" class="btn btn-gold">
+        {{ section.settings.button_label }}
+      </a>
+
+      <div class="hero-counters">
+        <div class="counter-item">
+          <span class="number" data-count="{{ section.settings.stat_1_val }}">0</span>
+          <span class="label">{{ section.settings.stat_1_label }}</span>
+        </div>
+        <div class="counter-item">
+          <span class="number" data-count="{{ section.settings.stat_2_val }}">0</span>
+          <span class="label">{{ section.settings.stat_2_label }}</span>
+        </div>
+        <div class="counter-item">
+          <span class="number" data-count="{{ section.settings.stat_3_val }}">0</span>
+          <span class="label">{{ section.settings.stat_3_label }}</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1;"></div>
 </section>
 
 {% schema %}
@@ -12,21 +31,72 @@
   "name": "Hero",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
       "type": "text",
-      "id": "heading",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "MODERN MACHINERY DESTROYS NUTRIENTS"
+    },
+    {
+      "type": "text",
+      "id": "title",
       "label": "Heading",
       "default": "Taste of Farming"
     },
     {
       "type": "text",
-      "id": "cta_text",
-      "label": "CTA Text",
+      "id": "button_label",
+      "label": "Button Label",
       "default": "Buy A2 Ghee"
     },
     {
       "type": "url",
-      "id": "cta_link",
-      "label": "CTA Link"
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Statistics"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 Label",
+      "default": "% Forest Fed"
+    },
+    {
+      "type": "number",
+      "id": "stat_1_val",
+      "label": "Stat 1 Value",
+      "default": 100
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 Label",
+      "default": "Kapila Genetics"
+    },
+    {
+      "type": "number",
+      "id": "stat_2_val",
+      "label": "Stat 2 Value",
+      "default": 100
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Stat 3 Label",
+      "default": "Year Tradition"
+    },
+    {
+      "type": "number",
+      "id": "stat_3_val",
+      "label": "Stat 3 Value",
+      "default": 3000
     }
   ],
   "presets": [

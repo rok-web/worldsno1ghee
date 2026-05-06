@@ -1,8 +1,10 @@
-<section class="section-padding">
+<section class="collection-products" style="padding: 100px 0;">
   <div class="container">
-    <div class="product-grid">
+    <div class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
       {% for product in collection.products %}
         {% render 'product-card', product: product %}
+      {% else %}
+        <p style="text-align: center; width: 100%;">No products found in this collection.</p>
       {% endfor %}
     </div>
   </div>

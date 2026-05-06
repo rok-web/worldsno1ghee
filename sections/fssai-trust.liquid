@@ -1,10 +1,60 @@
-<section class="fssai-trust">
-  <img class="fssai-trust__img" src="https://worldsno1bestghee.com/wp-content/uploads/2023/07/fssai-logo.png" alt="FSSAI Certified">
-  <div class="fssai-trust__text">FSSAI Certified — 100% Lab Tested for Purity & Safety</div>
+<section class="fssai-trust" style="padding: 100px 0; background-color: var(--color-white);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      <p class="p-large">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="pdf-container" data-aos="fade-up">
+      <iframe src="https://docs.google.com/gview?embedded=true&url={{ section.settings.pdf_url | url_encode }}" style="width:100%; height:100%;" frameborder="0"></iframe>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px;">
+      <a href="{{ section.settings.cta_link }}" class="btn btn-outline">
+        {{ section.settings.cta_label }}
+      </a>
+    </div>
+  </div>
 </section>
+
 {% schema %}
 {
   "name": "FSSAI Trust",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "THE SEAL OF TRUST"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "FSSAI Certified. Scientifically Verified."
+    },
+    {
+      "type": "text",
+      "id": "pdf_url",
+      "label": "PDF URL",
+      "default": "https://worldsno1bestghee.com/wp-content/uploads/2026/02/9da61a6b-9795-41e1-9073-aa0347d4f63d.pdf"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button Label",
+      "default": "View Lab Reports"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FSSAI Trust"
+    }
+  ]
 }
 {% endschema %}

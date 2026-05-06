@@ -1,0 +1,73 @@
+<section class="customer-account" style="padding: 100px 0; background-color: var(--color-cream-bg); min-height: 80vh;">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px;">
+      <div>
+        <h1 class="h2">My Account</h1>
+        <p style="opacity: 0.6;">Welcome back, {{ customer.first_name }}</p>
+      </div>
+      <a href="/account/logout" class="btn btn-outline" style="padding: 10px 25px; font-size: 14px;">Logout</a>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 60px;">
+      <!-- Order History -->
+      <div data-aos="fade-right">
+        <h3 class="h4" style="margin-bottom: 30px; border-bottom: 2px solid var(--color-gold); display: inline-block; padding-bottom: 10px;">Order History</h3>
+        
+        {% if customer.orders.size > 0 %}
+          <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.03);">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+              <thead>
+                <tr style="background: var(--color-earth-dark); color: white;">
+                  <th style="padding: 20px;">Order</th>
+                  <th style="padding: 20px;">Date</th>
+                  <th style="padding: 20px;">Payment Status</th>
+                  <th style="padding: 20px;">Fulfillment Status</th>
+                  <th style="padding: 20px; text-align: right;">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in customer.orders %}
+                  <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 20px;"><a href="{{ order.customer_url }}" style="color: var(--color-gold); font-weight: 600;">{{ order.name }}</a></td>
+                    <td style="padding: 20px;">{{ order.created_at | date: "%b %d, %Y" }}</td>
+                    <td style="padding: 20px;">{{ order.financial_status_label }}</td>
+                    <td style="padding: 20px;">{{ order.fulfillment_status_label }}</td>
+                    <td style="padding: 20px; text-align: right;">{{ order.total_price | money }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div style="padding: 40px; background: white; border-radius: 8px; text-align: center; opacity: 0.6;">
+            You haven't placed any orders yet.
+            <div style="margin-top: 20px;">
+              <a href="/collections/all" class="btn btn-gold">Start Shopping</a>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Account Details -->
+      <div data-aos="fade-left">
+        <h3 class="h4" style="margin-bottom: 30px; border-bottom: 2px solid var(--color-gold); display: inline-block; padding-bottom: 10px;">Account Details</h3>
+        <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.03);">
+          <p style="font-weight: 600; margin-bottom: 5px;">{{ customer.name }}</p>
+          <p style="opacity: 0.7; margin-bottom: 20px;">{{ customer.email }}</p>
+          
+          <div style="margin-top: 30px;">
+            <h4 style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-gold); margin-bottom: 15px;">Primary Address</h4>
+            {% if customer.default_address %}
+              <div style="opacity: 0.8; font-size: 15px; line-height: 1.6;">
+                {{ customer.default_address | format_address }}
+              </div>
+            {% else %}
+              <p style="opacity: 0.6; font-size: 14px;">No addresses saved.</p>
+            {% endif %}
+            <a href="/account/addresses" style="color: var(--color-gold); font-size: 14px; display: inline-block; margin-top: 15px; font-weight: 600;">View Addresses ({{ customer.addresses_count }})</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

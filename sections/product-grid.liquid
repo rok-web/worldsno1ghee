@@ -1,14 +1,50 @@
-<section class="collection-products" style="padding: 100px 0;">
+<section class="collection-products" style="padding: 60px 0;">
   <div class="container">
-    <div class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+    <!-- Toolbar -->
+    <div class="collection-toolbar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+      <div class="product-count" style="font-size: 14px; opacity: 0.6;">
+        Showing {{ collection.products_count }} results
+      </div>
+      <div class="collection-sort">
+        <label for="SortBy" style="font-size: 14px; margin-right: 10px;">Sort by:</label>
+        <select name="sort_by" id="SortBy" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;" onchange="location.href = '?sort_by=' + this.value;">
+          {% for option in collection.sort_options %}
+            <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="product-grid collection-grid">
       {% for product in collection.products %}
         {% render 'product-card', product: product %}
       {% else %}
-        <p style="text-align: center; width: 100%;">No products found in this collection.</p>
+        <p style="text-align: center; width: 100%; padding: 100px 0;">No products found in this collection.</p>
       {% endfor %}
     </div>
   </div>
 </section>
+
+<style>
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  @media (max-width: 1024px) {
+    .collection-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .collection-grid { 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 15px;
+    }
+    .collection-toolbar { flex-direction: column; gap: 20px; align-items: flex-start; }
+  }
+</style>
 
 {% schema %}
 {

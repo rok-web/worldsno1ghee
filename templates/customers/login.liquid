@@ -1,0 +1,38 @@
+<section class="customer-login" style="padding: 100px 0; background-color: var(--color-cream-bg); min-height: 80vh; display: flex; align-items: center;">
+  <div class="container">
+    <div class="login-card" style="max-width: 450px; margin: 0 auto; background: var(--color-white); padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center;" data-aos="fade-up">
+      <h1 class="h3" style="margin-bottom: 10px;">Login</h1>
+      <p style="margin-bottom: 30px; opacity: 0.6;">Welcome back to the Sanctuary</p>
+
+      {% form 'customer_login' %}
+        {% if form.errors %}
+          <div class="form-errors" style="color: #ff4d4f; margin-bottom: 20px; font-size: 14px;">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <div class="field" style="margin-bottom: 20px;">
+          <input type="email" name="customer[email]" placeholder="Email" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+
+        <div class="field" style="margin-bottom: 20px;">
+          <input type="password" name="customer[password]" placeholder="Password" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+
+        <div style="text-align: left; margin-bottom: 30px;">
+          <a href="#recover" id="RecoverPassword" style="font-size: 14px; color: var(--color-gold);">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-gold" style="width: 100%; padding: 15px;">Log In</button>
+
+        <div style="margin-top: 30px; font-size: 14px;">
+          Don't have an account? <a href="/account/register" style="color: var(--color-gold); font-weight: 600;">Create one</a>
+        </div>
+      {% endform %}
+    </div>
+
+    <div style="max-width: 600px; margin: 60px auto 0; text-align: center; opacity: 0.7; font-style: italic; font-size: 14px;">
+      "Most ghee today is just ‘butter oil.’ Ours is a medicinal elixir, crafted according to the 3,000-year-old Charaka Samhita texts."
+    </div>
+  </div>
+</section>

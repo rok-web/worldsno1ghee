@@ -1,58 +1,54 @@
-<section class="contact-section">
-  <div class="container">
-    <div class="contact-container">
+<section class="contact-section" style="position: relative; overflow: hidden; padding: 120px 0; background: url('https://worldsno1bestghee.com/wp-content/uploads/2026/02/A_dark_moody_2k_202602242213-scaled.jpeg') no-repeat center center/cover;">
+  <!-- Overlay -->
+  <div style="position: absolute; inset: 0; background: rgba(26, 18, 8, 0.85); z-index: 1;"></div>
+
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="contact-container" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); padding: 60px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);">
       <!-- Contact Info -->
-      <div class="contact-info" data-aos="fade-right">
-        <h2 class="h2" style="margin-bottom: 40px;">Get in Touch</h2>
+      <div class="contact-info" data-aos="fade-right" style="color: white;">
+        <h1 class="h2" style="margin-bottom: 40px; color: var(--color-gold);">Let's Connect</h1>
+        <p style="margin-bottom: 40px; opacity: 0.8; font-size: 18px;">Have questions about the Bilona method or your order? We’re here to help you rediscover Vedic nutrition.</p>
         
-        <div class="contact-info-block">
-          <h4 class="footer-heading">Address</h4>
-          <p>#15-116-12-2-10, Kamma Gadda Street, Madanapalle, Annamayya, Andhra Pradesh-517325</p>
+        <div class="contact-info-block" style="margin-bottom: 30px;">
+          <h4 class="footer-heading" style="color: var(--color-gold-light); font-size: 14px;">Visit the Sanctuary</h4>
+          <p style="font-size: 16px;">#15-116-12-2-10, Kamma Gadda Street, Madanapalle, Annamayya, Andhra Pradesh-517325</p>
         </div>
 
-        <div class="contact-info-block">
-          <h4 class="footer-heading">Email</h4>
-          <p>Customer@worldsno1bestghee.in</p>
+        <div class="contact-info-block" style="margin-bottom: 30px;">
+          <h4 class="footer-heading" style="color: var(--color-gold-light); font-size: 14px;">Email Support</h4>
+          <p style="font-size: 16px;">Customer@worldsno1bestghee.in</p>
         </div>
 
-        <div class="contact-info-block">
-          <h4 class="footer-heading">WhatsApp</h4>
-          <p>+91 8555-926620</p>
-        </div>
-
-        <div class="contact-info-block">
-          <h4 class="footer-heading">FSSAI No</h4>
-          <p>10124025000164</p>
+        <div class="contact-info-block" style="margin-bottom: 30px;">
+          <h4 class="footer-heading" style="color: var(--color-gold-light); font-size: 14px;">Direct Line / WhatsApp</h4>
+          <p style="font-size: 20px; font-weight: 600;">+91 8555-926620</p>
         </div>
       </div>
 
       <!-- Contact Form -->
       <div class="contact-form-wrapper" data-aos="fade-left">
-        {%- form 'contact', id: 'ContactForm' -%}
+        {%- form 'contact', id: 'ContactForm', class: 'custom-contact-form' -%}
           {%- if form.posted_successfully? -%}
-            <div class="form-success" style="padding: 20px; background: #e6ffed; border: 1px solid #b7eb8f; margin-bottom: 20px;">
-              Thanks for contacting us. We'll get back to you as soon as possible.
+            <div class="form-success" style="padding: 20px; background: rgba(200, 150, 30, 0.2); color: var(--color-gold-light); border: 1px solid var(--color-gold); margin-bottom: 20px;">
+              Your message was sent successfully. We will contact you soon.
             </div>
           {%- elsif form.errors -%}
-            <div class="form-errors" style="padding: 20px; background: #fff1f0; border: 1px solid #ffa39e; margin-bottom: 20px;">
+            <div class="form-errors" style="color: #ff4d4f; margin-bottom: 20px;">
               {{ form.errors | default_errors }}
             </div>
           {%- endif -%}
 
-          <div class="field">
-            <input type="text" name="contact[name]" id="ContactForm-name" placeholder="Name" required>
+          <div class="field" style="margin-bottom: 15px;">
+            <input type="text" name="contact[name]" id="ContactForm-name" placeholder="Full Name" required style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 15px; width: 100%;">
           </div>
-          <div class="field">
-            <input type="email" name="contact[email]" id="ContactForm-email" placeholder="Email" required>
+          <div class="field" style="margin-bottom: 15px;">
+            <input type="email" name="contact[email]" id="ContactForm-email" placeholder="Email Address" required style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 15px; width: 100%;">
           </div>
-          <div class="field">
-            <input type="tel" name="contact[phone]" id="ContactForm-phone" placeholder="Phone Number">
-          </div>
-          <div class="field">
-            <textarea rows="6" name="contact[body]" id="ContactForm-body" placeholder="Message" required></textarea>
+          <div class="field" style="margin-bottom: 15px;">
+            <textarea rows="5" name="contact[body]" id="ContactForm-body" placeholder="How can we help you?" required style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 15px; width: 100%;"></textarea>
           </div>
           
-          <button type="submit" class="btn btn-gold" style="width: 100%;">Send Message</button>
+          <button type="submit" class="btn btn-gold" style="width: 100%; padding: 18px; font-weight: 700;">SEND MESSAGE</button>
         {%- endform -%}
       </div>
     </div>

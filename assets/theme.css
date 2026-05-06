@@ -952,14 +952,16 @@ button, .btn {
 }
 
 /* --- ANIMATIONS --- */
-@keyframes pulse-gold {
-  0% { text-shadow: 0 0 0 rgba(200, 150, 30, 0); }
-  50% { text-shadow: 0 0 20px rgba(200, 150, 30, 0.5); transform: scale(1.02); }
-  100% { text-shadow: 0 0 0 rgba(200, 150, 30, 0); }
+@keyframes color-blink {
+  0% { color: var(--color-gold); text-shadow: 0 0 10px rgba(200, 150, 30, 0.5); opacity: 1; }
+  25% { color: var(--color-gold-light); text-shadow: 0 0 20px rgba(232, 184, 75, 0.8); opacity: 0.9; }
+  50% { color: var(--color-white); text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); opacity: 1; }
+  75% { color: var(--color-gold-light); text-shadow: 0 0 20px rgba(232, 184, 75, 0.8); opacity: 0.9; }
+  100% { color: var(--color-gold); text-shadow: 0 0 10px rgba(200, 150, 30, 0.5); opacity: 1; }
 }
 
 .pulse-text {
-  animation: pulse-gold 3s ease-in-out infinite;
+  animation: color-blink 4s linear infinite;
   display: inline-block;
 }
 

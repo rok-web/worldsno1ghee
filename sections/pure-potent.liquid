@@ -1,80 +1,120 @@
-<section class="pure-potent" style="padding: 100px 0; background-color: var(--color-white);">
+<section class="pure-potent-precious" style="padding: 100px 0; background-color: var(--color-white);">
   <div class="container">
-    <div class="section-header" data-aos="fade-up">
-      <h2 class="h2">{{ section.settings.title }}</h2>
-      <p class="p-large">{{ section.settings.subtitle }}</p>
+    <div class="section-header" data-aos="fade-up" style="text-align: center; margin-bottom: 60px;">
+      <h2 class="h1" style="font-size: 64px; font-weight: 500;">Pure. Potent. Precious.</h2>
     </div>
 
-    <div class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));">
-      {%- assign collection = collections[section.settings.collection] -%}
-      {% for product in collection.products limit: section.settings.product_limit %}
-        {% render 'product-card', product: product %}
-      {% else %}
-        {% for i in (1..6) %}
-          <div class="product-card placeholder">
-            <div class="product-image" style="background: #eee; height: 350px;"></div>
-            <div class="product-info">
-              <h3 class="product-title">Sacred Product</h3>
-              <div class="product-price">₹999</div>
-            </div>
+    <div class="product-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+      
+      <!-- Product 1 -->
+      <div class="custom-product-card" data-aos="fade-up">
+        <div class="card-image-wrapper" style="position: relative; overflow: hidden; border-radius: 4px;">
+          <span class="sale-badge" style="position: absolute; top: 15px; left: 15px; background: #FFD700; color: black; font-weight: 700; padding: 4px 8px; font-size: 12px; z-index: 2; border-radius: 2px;">50%</span>
+          <img src="{{ 'product-pickle.png' | asset_url }}" alt="Andhra Ooty Avakaya" style="width: 100%; display: block; transition: transform 0.5s ease;">
+          <div class="quick-view-bar">
+            <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
           </div>
-        {% endfor %}
-      {% endfor %}
-    </div>
+        </div>
+        <div class="card-info" style="padding: 20px 0; text-align: center;">
+          <h3 style="font-size: 20px; font-weight: 400; line-height: 1.4;">Andhra Ooty Avakaya (Hill-Grown Vintage Pickle) 1/2kg</h3>
+        </div>
+      </div>
 
-    <div style="text-align: center; margin-top: 60px;">
-      <a href="{{ section.settings.cta_link }}" class="btn btn-gold">
-        {{ section.settings.cta_label }}
-      </a>
+      <!-- Product 2 -->
+      <div class="custom-product-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-image-wrapper" style="position: relative; overflow: hidden; border-radius: 4px;">
+          <span class="sale-badge" style="position: absolute; top: 15px; left: 15px; background: #FFD700; color: black; font-weight: 700; padding: 4px 8px; font-size: 12px; z-index: 2; border-radius: 2px;">33%</span>
+          <img src="{{ 'product-moringa.png' | asset_url }}" alt="Sacred Nati Moringa" style="width: 100%; display: block; transition: transform 0.5s ease;">
+          <div class="quick-view-bar">
+            <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
+          </div>
+        </div>
+        <div class="card-info" style="padding: 20px 0; text-align: center;">
+          <h3 style="font-size: 20px; font-weight: 400; line-height: 1.4;">Sacred Nati Moringa Leaf Powder (The Miracle Tree)</h3>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="custom-product-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-image-wrapper" style="position: relative; overflow: hidden; border-radius: 4px;">
+          <span class="sale-badge" style="position: absolute; top: 15px; left: 15px; background: #FFD700; color: black; font-weight: 700; padding: 4px 8px; font-size: 12px; z-index: 2; border-radius: 2px;">33%</span>
+          <img src="{{ 'product-pickle.png' | asset_url }}" alt="Andhra Ooty Avakaya" style="width: 100%; display: block; transition: transform 0.5s ease;">
+          <div class="quick-view-bar">
+            <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
+          </div>
+        </div>
+        <div class="card-info" style="padding: 20px 0; text-align: center;">
+          <h3 style="font-size: 20px; font-weight: 400; line-height: 1.4;">Andhra Ooty Avakaya (Hill-Grown Vintage Pickle) 1kg</h3>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="custom-product-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-image-wrapper" style="position: relative; overflow: hidden; border-radius: 4px;">
+          <span class="sale-badge" style="position: absolute; top: 15px; left: 15px; background: #FFD700; color: black; font-weight: 700; padding: 4px 8px; font-size: 12px; z-index: 2; border-radius: 2px;">24%</span>
+          <img src="{{ 'product-moringa.png' | asset_url }}" alt="Sacred Nati Moringa" style="width: 100%; display: block; transition: transform 0.5s ease;">
+          <div class="quick-view-bar">
+            <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
+          </div>
+        </div>
+        <div class="card-info" style="padding: 20px 0; text-align: center;">
+          <h3 style="font-size: 20px; font-weight: 400; line-height: 1.4;">Sacred Nati Moringa Leaf Powder (The Miracle Tree) 1kg</h3>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
+<style>
+  .custom-product-card:hover img { transform: scale(1.05); }
+  
+  .quick-view-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(44, 44, 44, 0.8);
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    z-index: 5;
+  }
+  
+  .card-image-wrapper:hover .quick-view-bar {
+    transform: translateY(0);
+  }
+
+  .icon-eye svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+  }
+
+  @media (max-width: 1024px) {
+    .pure-potent-precious .product-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .pure-potent-precious .h1 { font-size: 32px !important; }
+    .pure-potent-precious .product-grid { gap: 10px; }
+  }
+</style>
+
 {% schema %}
 {
-  "name": "Pure Potent Grid",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Pure. Potent. Precious."
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subheading",
-      "default": "The miracles of nature, bottled for you."
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "product_limit",
-      "min": 3,
-      "max": 12,
-      "step": 3,
-      "default": 6,
-      "label": "Number of products"
-    },
-    {
-      "type": "text",
-      "id": "cta_label",
-      "label": "Button Label",
-      "default": "Buy Now"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "Button Link"
-    }
-  ],
+  "name": "Pure Potent Screenshot",
+  "settings": [],
   "presets": [
     {
-      "name": "Pure Potent Grid"
+      "name": "Pure Potent Screenshot"
     }
   ]
 }

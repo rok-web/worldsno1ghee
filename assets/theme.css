@@ -937,6 +937,7 @@ button, .btn {
   .contact-container { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .about-hero-section { padding: 60px 0; }
+  .sanctuary { padding: 40px 0; }
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;

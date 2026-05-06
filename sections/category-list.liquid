@@ -1,0 +1,110 @@
+<section class="category-list">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up" style="text-align: center; margin-bottom: 60px;">
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="p-large">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="category-grid">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="category-item" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+          <div class="category-image-wrapper">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 400, height: 400, crop: 'center' }}" alt="{{ block.settings.title }}">
+            {% elsif block.settings.asset_image != blank %}
+              <img src="{{ block.settings.asset_image | asset_url }}" alt="{{ block.settings.title }}">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+          <h3 class="category-name">{{ block.settings.title }}</h3>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by Category",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Straight from our forest sanctuary to your home."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category Image (Shopify Media)"
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "Asset Image Filename (e.g. category-ghee.png)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Category",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": { 
+            "title": "A2 Bilona Ghee",
+            "asset_image": "category-ghee.png"
+          }
+        },
+        {
+          "type": "category",
+          "settings": { 
+            "title": "Forest Pickles",
+            "asset_image": "category-pickles.png"
+          }
+        },
+        {
+          "type": "category",
+          "settings": { 
+            "title": "Leaf Powders",
+            "asset_image": "category-powders.png"
+          }
+        },
+        {
+          "type": "category",
+          "settings": { 
+            "title": "Cold Pressed Oils",
+            "asset_image": "category-oils.png"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

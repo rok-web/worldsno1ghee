@@ -14,12 +14,52 @@
       "type": "sanctuary",
       "settings": {}
     },
-    "featured-products": {
-      "type": "featured-products",
+    "category-list": {
+      "type": "category-list",
       "settings": {
-        "title": "Sacred Offerings",
-        "product_limit": 4
-      }
+        "title": "Shop by Category",
+        "subtitle": "Sacred offerings from our forest sanctuary to your home."
+      },
+      "blocks": {
+        "ghee": {
+          "type": "category",
+          "settings": {
+            "title": "A2 Bilona Ghee",
+            "asset_image": "category-ghee.png",
+            "link": "/collections/ghee"
+          }
+        },
+        "pickles": {
+          "type": "category",
+          "settings": {
+            "title": "Forest Pickles",
+            "asset_image": "category-pickles.png",
+            "link": "/collections/pickles"
+          }
+        },
+        "powders": {
+          "type": "category",
+          "settings": {
+            "title": "Leaf Powders",
+            "asset_image": "category-powders.png",
+            "link": "/collections/powders"
+          }
+        },
+        "oils": {
+          "type": "category",
+          "settings": {
+            "title": "Cold Pressed Oils",
+            "asset_image": "category-oils.png",
+            "link": "/collections/oils"
+          }
+        }
+      },
+      "block_order": [
+        "ghee",
+        "pickles",
+        "powders",
+        "oils"
+      ]
     },
     "golden-elixir": {
       "type": "golden-elixir",
@@ -54,7 +94,7 @@
   "order": [
     "hero",
     "sanctuary",
-    "featured-products",
+    "category-list",
     "golden-elixir",
     "vedic-method",
     "bilona-journey",

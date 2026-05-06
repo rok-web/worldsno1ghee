@@ -6,26 +6,53 @@
     </div>
 
     <div class="journey-steps">
-      {% for block in section.blocks %}
-        <div class="journey-step" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
-          <div class="step-image">
-            <span class="step-number">{{ forloop.index }}</span>
-            {% if block.settings.image != blank %}
-              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title }}" style="display: block; width: 100%; height: auto; min-height: 200px; background: #f0f0f0;">
-            {% elsif block.settings.asset_image != blank %}
-              <img src="{{ block.settings.asset_image | asset_url }}" alt="{{ block.settings.title }}" style="display: block; width: 100%; height: auto; min-height: 200px; background: #f0f0f0;">
-            {% else %}
-              <div style="width: 100%; height: 300px; background: #eee; display: flex; align-items: center; justify-content: center;">
-                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-              </div>
-            {% endif %}
-          </div>
-          <div class="step-content">
-            <h3 class="h3 step-title">{{ block.settings.title }}</h3>
-            <div class="p-large">{{ block.settings.text }}</div>
-          </div>
+      <!-- Step 1 -->
+      <div class="journey-step" data-aos="fade-up">
+        <div class="step-image">
+          <span class="step-number">1</span>
+          <img src="{{ 'vedic-step-1.png' | asset_url }}" alt="The Sacred Kapila Source" style="display: block; width: 100%; height: auto;">
         </div>
-      {% endfor %}
+        <div class="step-content">
+          <h3 class="h3 step-title">The Sacred Kapila Source</h3>
+          <p class="p-large">Everything begins with the Kapila Red Cow. Exclusively forest-grazed on medicinal herbs like Ashwagandha and Amruthaballi, their A2 milk is a biological treasure. We don't use 'mixed milk' or industrial breeds.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="journey-step" data-aos="fade-up">
+        <div class="step-image">
+          <span class="step-number">2</span>
+          <img src="{{ 'vedic-step-2.png' | asset_url }}" alt="Slow Wood-Fire Boiling" style="display: block; width: 100%; height: auto;">
+        </div>
+        <div class="step-content">
+          <h3 class="h3 step-title">Slow Wood-Fire Boiling</h3>
+          <p class="p-large">Raw A2 milk is boiled slowly over traditional wood fires. This controlled heating preserves the delicate enzymes and nutrients that modern electrical pasteurization destroys. The aroma of wood-smoke is part of the alchemy.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="journey-step" data-aos="fade-up">
+        <div class="step-image">
+          <span class="step-number">3</span>
+          <img src="{{ 'vedic-step-3.png' | asset_url }}" alt="The Bilona Churning (Manthan)" style="display: block; width: 100%; height: auto;">
+        </div>
+        <div class="step-content">
+          <h3 class="h3 step-title">The Bilona Churning (Manthan)</h3>
+          <p class="p-large">The milk is cultured into curd in earthen pots. At Brahma Muhurta (dawn), we hand-churn the curd with a wooden Bilona. This bi-directional churning (Manthan) separates the Makkhan (butter) from the curd, not cream.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="journey-step" data-aos="fade-up">
+        <div class="step-image">
+          <span class="step-number">4</span>
+          <img src="{{ 'vedic-step-4.png' | asset_url }}" alt="The Golden Elixir Arrives" style="display: block; width: 100%; height: auto;">
+        </div>
+        <div class="step-content">
+          <h3 class="h3 step-title">The Golden Elixir Arrives</h3>
+          <p class="p-large">The Makkhan is clarified over slow heat to produce the final Ghee. Granular, aromatic, and medicinal. We produce in small batches only, ensuring that every jar you receive was made with human care, not machine efficiency.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

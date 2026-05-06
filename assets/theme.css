@@ -1143,11 +1143,11 @@ button, .btn {
 
 /* --- ANIMATIONS --- */
 @keyframes color-blink {
-  0% { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
-  25% { color: #FFA500; text-shadow: 0 0 25px rgba(255, 165, 0, 0.8); }
-  50% { color: #FFFFFF; text-shadow: 0 0 35px rgba(255, 255, 255, 0.8); }
-  75% { color: #FFD700; text-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
-  100% { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
+  0% { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+  25% { color: #FFA500; text-shadow: 0 0 20px rgba(255, 165, 0, 0.5); }
+  50% { color: #1A1208; text-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+  75% { color: #FFD700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+  100% { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
 }
 
 .h2, h2.h2 {

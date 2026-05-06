@@ -86,6 +86,30 @@
       "type": "fssai-trust",
       "settings": {}
     },
+    "testimonials": {
+      "type": "customer-testimonials",
+      "settings": {
+        "title": "Our Customer Says",
+        "subtitle": "Real stories from our beloved community."
+      },
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "customer_name": "Authentic Vedic Ghee Review",
+            "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "customer_name": "Beloved Customer Story",
+            "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          }
+        }
+      },
+      "block_order": ["video_1", "video_2"]
+    },
     "faq": {
       "type": "faq",
       "settings": {}
@@ -100,6 +124,7 @@
     "bilona-journey",
     "pure-potent",
     "fssai-trust",
+    "testimonials",
     "faq"
   ]
 }

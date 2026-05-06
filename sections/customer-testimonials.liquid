@@ -1,0 +1,88 @@
+<section class="testimonials">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up" style="text-align: center; margin-bottom: 60px;">
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="p-large">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="testimonial-grid">
+      {% for block in section.blocks %}
+        <div class="testimonial-item" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+          <div class="video-wrapper">
+            {% if block.settings.video_url != blank %}
+              <iframe 
+                src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ block.settings.video_url.id }}" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            {% else %}
+              <div style="background: #000; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff;">
+                YouTube Video Placeholder
+              </div>
+            {% endif %}
+          </div>
+          {% if block.settings.customer_name != blank %}
+            <h3 class="customer-name">{{ block.settings.customer_name }}</h3>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Our Customer Says"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Real stories from our beloved community."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video Testimonial",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "YouTube Video URL",
+          "accept": ["youtube"]
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Testimonials",
+      "blocks": [
+        {
+          "type": "video",
+          "settings": { "customer_name": "Authentic Review" }
+        },
+        {
+          "type": "video",
+          "settings": { "customer_name": "Beloved Customer" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

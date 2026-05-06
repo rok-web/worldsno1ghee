@@ -36,6 +36,7 @@
       "footer": {
         "type": "footer",
         "settings": {
+          "logo": "shopify://shop_images/logo_ghee.webp",
           "tagline": "Modern machinery destroys nutrients. We use the 3,000-year-old Bilona Method.",
           "menu": "",
           "policy_menu": ""

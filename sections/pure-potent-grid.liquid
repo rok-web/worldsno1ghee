@@ -100,11 +100,18 @@
   }
 
   @media (max-width: 1024px) {
-    .pure-potent-precious .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .pure-potent-precious .product-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
   }
   @media (max-width: 640px) {
-    .pure-potent-precious .h1 { font-size: 32px !important; }
-    .pure-potent-precious .product-grid { gap: 10px; }
+    .pure-potent-precious { padding: 60px 0 !important; }
+    .pure-potent-precious .h1 { font-size: 38px !important; margin-bottom: 40px !important; }
+    .pure-potent-precious .product-grid { 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 15px; 
+    }
+    .custom-product-card h3 { font-size: 16px !important; }
+    .sale-badge { font-size: 10px !important; padding: 2px 6px !important; }
+    .quick-view-bar { font-size: 12px; padding: 8px; }
   }
 </style>
 

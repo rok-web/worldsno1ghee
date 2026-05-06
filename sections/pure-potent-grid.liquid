@@ -4,61 +4,61 @@
       <h2 class="h1" style="font-size: 64px; font-weight: 500;">Pure. Potent. Precious.</h2>
     </div>
 
-    <div class="product-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+    <div class="product-grid">
       
       <!-- Product 1 -->
       <div class="custom-product-card" data-aos="fade-up">
-        <div class="card-image-wrapper" style="position: relative; overflow: hidden; border-radius: 4px;">
-          <span class="sale-badge" style="position: absolute; top: 15px; left: 15px; background: #FFD700; color: black; font-weight: 700; padding: 4px 8px; font-size: 12px; z-index: 2; border-radius: 2px;">50%</span>
-          <img src="{{ 'product-pickle.png' | asset_url }}" alt="Andhra Ooty Avakaya" style="width: 100%; display: block; transition: transform 0.5s ease;">
+        <div class="card-image-wrapper">
+          <span class="sale-badge">50%</span>
+          <img src="{{ 'product-pickle.png' | asset_url }}" alt="Andhra Ooty Avakaya">
           <div class="quick-view-bar">
             <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
           </div>
         </div>
-        <div class="card-info" style="padding: 20px 0; text-align: center;">
-          <h3 style="font-size: 20px; font-weight: 400; line-height: 1.4;">Andhra Ooty Avakaya (Hill-Grown Vintage Pickle) 1/2kg</h3>
+        <div class="card-info">
+          <h3>Andhra Ooty Avakaya (Hill-Grown Vintage Pickle) 1/2kg</h3>
         </div>
       </div>
 
       <!-- Product 2 -->
       <div class="custom-product-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="card-image-wrapper" style="position: relative; overflow: hidden; border-radius: 4px;">
-          <span class="sale-badge" style="position: absolute; top: 15px; left: 15px; background: #FFD700; color: black; font-weight: 700; padding: 4px 8px; font-size: 12px; z-index: 2; border-radius: 2px;">33%</span>
-          <img src="{{ 'product-moringa.png' | asset_url }}" alt="Sacred Nati Moringa" style="width: 100%; display: block; transition: transform 0.5s ease;">
+        <div class="card-image-wrapper">
+          <span class="sale-badge">33%</span>
+          <img src="{{ 'product-moringa.png' | asset_url }}" alt="Sacred Nati Moringa">
           <div class="quick-view-bar">
             <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
           </div>
         </div>
-        <div class="card-info" style="padding: 20px 0; text-align: center;">
-          <h3 style="font-size: 20px; font-weight: 400; line-height: 1.4;">Sacred Nati Moringa Leaf Powder (The Miracle Tree)</h3>
+        <div class="card-info">
+          <h3>Sacred Nati Moringa Leaf Powder (The Miracle Tree)</h3>
         </div>
       </div>
 
       <!-- Product 3 -->
       <div class="custom-product-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="card-image-wrapper" style="position: relative; overflow: hidden; border-radius: 4px;">
-          <span class="sale-badge" style="position: absolute; top: 15px; left: 15px; background: #FFD700; color: black; font-weight: 700; padding: 4px 8px; font-size: 12px; z-index: 2; border-radius: 2px;">33%</span>
-          <img src="{{ 'product-pickle.png' | asset_url }}" alt="Andhra Ooty Avakaya" style="width: 100%; display: block; transition: transform 0.5s ease;">
+        <div class="card-image-wrapper">
+          <span class="sale-badge">33%</span>
+          <img src="{{ 'product-pickle.png' | asset_url }}" alt="Andhra Ooty Avakaya">
           <div class="quick-view-bar">
             <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
           </div>
         </div>
-        <div class="card-info" style="padding: 20px 0; text-align: center;">
-          <h3 style="font-size: 20px; font-weight: 400; line-height: 1.4;">Andhra Ooty Avakaya (Hill-Grown Vintage Pickle) 1kg</h3>
+        <div class="card-info">
+          <h3>Andhra Ooty Avakaya (Hill-Grown Vintage Pickle) 1kg</h3>
         </div>
       </div>
 
       <!-- Product 4 -->
       <div class="custom-product-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="card-image-wrapper" style="position: relative; overflow: hidden; border-radius: 4px;">
-          <span class="sale-badge" style="position: absolute; top: 15px; left: 15px; background: #FFD700; color: black; font-weight: 700; padding: 4px 8px; font-size: 12px; z-index: 2; border-radius: 2px;">24%</span>
-          <img src="{{ 'product-moringa.png' | asset_url }}" alt="Sacred Nati Moringa" style="width: 100%; display: block; transition: transform 0.5s ease;">
+        <div class="card-image-wrapper">
+          <span class="sale-badge">24%</span>
+          <img src="{{ 'product-moringa.png' | asset_url }}" alt="Sacred Nati Moringa">
           <div class="quick-view-bar">
             <span class="icon-eye">{% render 'icons', icon: 'search' %}</span> Quick view
           </div>
         </div>
-        <div class="card-info" style="padding: 20px 0; text-align: center;">
-          <h3 style="font-size: 20px; font-weight: 400; line-height: 1.4;">Sacred Nati Moringa Leaf Powder (The Miracle Tree) 1kg</h3>
+        <div class="card-info">
+          <h3>Sacred Nati Moringa Leaf Powder (The Miracle Tree) 1kg</h3>
         </div>
       </div>
 
@@ -67,17 +67,54 @@
 </section>
 
 <style>
+  .pure-potent-precious .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 30px;
+  }
+
+  .card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #f9f9f9;
+  }
+
+  .custom-product-card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
   .custom-product-card:hover img { transform: scale(1.05); }
   
+  .card-info { padding: 20px 0; text-align: center; }
+  .card-info h3 { font-size: 20px; font-weight: 400; line-height: 1.4; color: var(--color-earth-dark); }
+
+  .sale-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #FFD700;
+    color: black;
+    font-weight: 700;
+    padding: 4px 10px;
+    font-size: 13px;
+    z-index: 2;
+    border-radius: 2px;
+  }
+
   .quick-view-bar {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(44, 44, 44, 0.8);
+    background: rgba(44, 44, 44, 0.85);
     color: white;
     text-align: center;
-    padding: 12px;
+    padding: 14px;
     font-size: 14px;
     transform: translateY(100%);
     transition: transform 0.3s ease;
@@ -89,29 +126,24 @@
     z-index: 5;
   }
   
-  .card-image-wrapper:hover .quick-view-bar {
-    transform: translateY(0);
-  }
+  .card-image-wrapper:hover .quick-view-bar { transform: translateY(0); }
 
-  .icon-eye svg {
-    width: 16px;
-    height: 16px;
-    fill: white;
-  }
+  .icon-eye svg { width: 16px; height: 16px; fill: white; }
 
   @media (max-width: 1024px) {
-    .pure-potent-precious .product-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    .pure-potent-precious .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px; }
   }
+
   @media (max-width: 640px) {
     .pure-potent-precious { padding: 60px 0 !important; }
-    .pure-potent-precious .h1 { font-size: 38px !important; margin-bottom: 40px !important; }
+    .pure-potent-precious .h1 { font-size: 42px !important; margin-bottom: 40px !important; }
     .pure-potent-precious .product-grid { 
-      grid-template-columns: repeat(2, 1fr); 
-      gap: 15px; 
+      grid-template-columns: repeat(2, 1fr) !important; 
+      gap: 12px !important; 
     }
-    .custom-product-card h3 { font-size: 16px !important; }
-    .sale-badge { font-size: 10px !important; padding: 2px 6px !important; }
-    .quick-view-bar { font-size: 12px; padding: 8px; }
+    .card-info { padding: 15px 5px !important; }
+    .card-info h3 { font-size: 15px !important; min-height: 4.2em; }
+    .sale-badge { font-size: 10px !important; padding: 3px 6px !important; top: 10px; left: 10px; }
   }
 </style>
 
